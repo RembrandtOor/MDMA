@@ -1,17 +1,25 @@
 <?php
 
-// class View {
-//     /**
-//      * static construct so we can use View('')
-//      */
-//     public function __construct($view_name, $parameters = []) {
-//         return file_get_contents(__DIR__.'/../Views/'.$view_name.'.html');
-//     }
-// }
+class View {
+    public static function render($view, $parameters) {
+        // replace . with / so you can use . in the name instead of /
+        if(strpos($view, '.') !== false){
+            $view = str_replace('.', '/', $view);
+        }
 
-function view($view_name, $parameters = []) { 
-    if(strpos($view_name, '.') !== false){
-        $view_name = str_replace('.', '/', $view_name);
+        /* $view_contents = file_get_contents(__DIR__.'/../Views/'.$view_name.'.php');
+        $view_contents = preg_replace('/^{{(.*)}}$/', '<?php${1}?>', $view_contents);
+        // file_put_contents(__DIR__.'/../Views/'.$view_name.'.php', $view_contents);
+        */
+
+        extract($parameters);
+
+        ob_start();
+        include (__DIR__.'/../Views/'.$view.'.php');
+        echo ob_get_clean();
     }
-    return file_get_contents(__DIR__.'/../Views/'.$view_name.'.html');
+}
+
+ function view($view_name, $parameters = []) { 
+    echo View::render($view_name, $parameters);
 }

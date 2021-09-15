@@ -6,6 +6,10 @@ require_once __DIR__.'/Helpers/View.php';
 //     return view('test.cool');
 // });
 
-Route::get('index', [
+Route::get('/index', [
     'IndexController', 'index'
+]);
+
+Route::get('/cool', [
+    'CoolController', 'index'
 ]);

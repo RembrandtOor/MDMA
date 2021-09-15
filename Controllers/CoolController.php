@@ -2,8 +2,8 @@
 require_once __DIR__.'/../Helpers/Route.php';
 require_once __DIR__.'/../Helpers/View.php';
 
-class IndexController {    
+class CoolController {    
     public function index() {
-        return view('index', ['hello' => 'dani']);
+        return view('dani', ['kutjong' => 'dani']);
     }
 }
