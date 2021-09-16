@@ -2,7 +2,6 @@
 require_once __DIR__.'/View.php';
 
 class Route {
-    private static $current;
     static $routes = [];
     // static $method, $route, $action, $name;
 
@@ -11,13 +10,11 @@ class Route {
     // }
 
     public static function get($route, $action) {
-        // self::$routes['GET'][$route] = $action;
-        self::$routes['GET'][$route] = ['action' => $action, 'name' => ''];
-        self::$current = ['method' => 'GET', 'route' => $route, 'action' => $action, 'name' => ''];
+        self::$routes['GET'][$route] = $action;
         // self::$method = 'GET';
         // self::$route = $route;
         // self::$action = $action;
-        return new self;
+        // return new self;
     }
 
     public static function post($route, $action) {
@@ -26,12 +23,6 @@ class Route {
         // self::$route = $route;
         // self::$action = $action;
         // return new self;
-    }
-
-    public static function name($name) {
-        self::$current['name'] = $name;
-        self::$routes[self::$current['method']][self::$current['route']] = ['action' => self::$current['action'], 'name' => $name];
-        // var_dump(self::$routes);
     }
 
     // public function name($name) {
@@ -49,11 +40,11 @@ class Route {
                 return true;
             }
             if(is_array($findroute)) {
-                require_once __DIR__.'/../Controllers/'.$findroute['action'][0].'.php';
-                $controller_name = explode('/', $findroute['action'][0]);
+                require_once __DIR__.'/../Controllers/'.$findroute[0].'.php';
+                $controller_name = explode('/', $findroute[0]);
                 $controller_name = end($controller_name);
 
-                $function_name = $findroute['action'][1];
+                $function_name = $findroute[1];
 
                 $controller = new $controller_name;
                 echo $controller->$function_name();
@@ -66,10 +57,8 @@ class Route {
 }
 
 function route($route_name) {
-    foreach(Route::$routes[$_SERVER['REQUEST_METHOD']] as $route => $values){
-        if($values['name'] == $route_name){
-            return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/?route=".$route;
-        }
-    }
+    // return array_search($route_name, array_column(Route::$routes, 'name'));
+    // return array_column(Route::$routes, 'name');
     return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/?route=".$route_name;
 }
+
