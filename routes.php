@@ -8,8 +8,8 @@ require_once __DIR__.'/Helpers/View.php';
 
 Route::get('/index', [
     'IndexController', 'index'
-]);
+])->name('welcome');
 
-Route::get('/cool', [
-    'CoolController', 'index'
-]);
+Route::get('/songs', [
+    'SongController', 'index'
+])->name('songs');
