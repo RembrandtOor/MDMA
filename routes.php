@@ -1,15 +1,12 @@
 <?php
-require_once __DIR__.'/Helpers/Route.php';
-require_once __DIR__.'/Helpers/View.php';
-
-// Route::get('index', function() {
-//     return view('test.cool');
-// });
+use App\Helpers\Route;
+use App\Controllers\IndexController;
+use App\Controllers\SongController;
 
 Route::get('/index', [
-    'IndexController', 'index'
+    IndexController::class, 'index'
 ])->name('welcome');
 
 Route::get('/songs', [
-    'SongController', 'index'
+    SongController::class, 'index'
 ])->name('songs');

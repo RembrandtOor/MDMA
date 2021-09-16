@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__.'/Model.php';
+namespace App\Models;
+
+use App\Models\Model;
 
 class Song extends Model {
     public function cool() {

@@ -1,4 +1,5 @@
 <?php
+namespace App\Helpers;
 
 class Database {
     public function __construct($host = '127.0.0.1:3306', $database = 'mdma', $username = 'root', $password = 'password', $type = 'mysql') {
@@ -7,8 +8,8 @@ class Database {
 
     private function construct($host = '127.0.0.1:3306', $database = 'mdma', $username = 'root', $password = 'password', $type = 'mysql') {
         try {
-            $pdo = new PDO("{$type}:host={$host};dbname=$database", $username, $password);
-        } catch (PDOException $e) {
+            $pdo = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
+        } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage());
         }
 
@@ -21,13 +22,13 @@ class Database {
         try {
             $prepared = $conn->prepare($query);
             $prepared->execute($parameters);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             echo 'Something wrong with a query<br>';
             var_dump($query, $parameters);
             echo $e->getMessage();
         }
 
-        return $prepared->fetchAll(PDO::FETCH_ASSOC);
+        return $prepared->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function readOne($query, $parameters = []) {
@@ -36,12 +37,12 @@ class Database {
         try {
             $prepared = $conn->prepare($query);
             $prepared->execute($parameters);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             echo 'Something wrong with a query<br>';
             var_dump($query, $parameters);
             echo $e->getMessage();
         }
         
-        return $prepared->fetch(PDO::FETCH_ASSOC);
+        return $prepared->fetch(\PDO::FETCH_ASSOC);
     }
 }

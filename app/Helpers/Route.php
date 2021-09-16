@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/View.php';
+namespace App\Helpers;
 
 class Route {
     private static $current;
@@ -34,12 +34,8 @@ class Route {
         // var_dump(self::$routes);
     }
 
-    // public function name($name) {
-    //     self::$name = $name;
-    //     // var_dump(self::$method, self::$route, self::$action, self::$name);
-    // }
-
     public static function handle($method, $request) {
+        self::registerRoutes();
         $route = $request['route'] ?? '/index';
 
         if(self::$routes[$method][$route] ?? false) {
@@ -49,13 +45,13 @@ class Route {
                 return true;
             }
             if(is_array($findroute)) {
-                require_once __DIR__.'/../Controllers/'.$findroute['action'][0].'.php';
-                $controller_name = explode('/', $findroute['action'][0]);
-                $controller_name = end($controller_name);
+                // require_once __DIR__.'/../'.$findroute['action'][0].'.php';
+                // $controller_name = explode('/', $findroute['action'][0]);
+                // $controller_name = end($controller_name);
 
                 $function_name = $findroute['action'][1];
 
-                $controller = new $controller_name;
+                $controller = new $findroute['action'][0];
                 echo $controller->$function_name();
                 return true;
             }
@@ -63,13 +59,8 @@ class Route {
         }
         echo '404 NOT FOUND';
     }
-}
 
-function route($route_name) {
-    foreach(Route::$routes[$_SERVER['REQUEST_METHOD']] as $route => $values){
-        if($values['name'] == $route_name){
-            return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/?route=".$route;
-        }
+    private static function registerRoutes() {
+        require_once __DIR__.'/../../routes.php';
     }
-    return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/?route=".$route_name;
 }

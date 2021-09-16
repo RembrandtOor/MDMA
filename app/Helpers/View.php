@@ -1,4 +1,5 @@
 <?php
+namespace App\Helpers;
 
 class View {
     public static function render($view, $parameters) {
@@ -14,12 +15,8 @@ class View {
 
         extract($parameters);
 
-        ob_start();
-        include (__DIR__.'/../Views/'.$view.'.php');
-        echo ob_get_clean();
+        // ob_start();
+        include (__DIR__.'/../../Views/'.$view.'.php');
+        // echo ob_get_clean();
     }
-}
-
- function view($view_name, $parameters = []) { 
-    echo View::render($view_name, $parameters);
 }
