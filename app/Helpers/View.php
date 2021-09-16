@@ -16,7 +16,7 @@ class View {
         extract($parameters);
 
         // ob_start();
-        include (__DIR__.'/../../Views/'.$view.'.php');
+        include (__DIR__.'/../../resources/views/'.$view.'.php');
         // echo ob_get_clean();
     }
 }
