@@ -21,10 +21,10 @@
         </thead>
         <tbody>
             <?php foreach($songs as $song){?>
-            <tr>
-                <td><?= $song->id; ?></td>
-                <td><?= $song->name; ?></td>
-            </tr>
+                <tr>
+                    <td><?= $song->id; ?></td>
+                    <td><?= $song->name; ?></td>
+                </tr>
             <?php } ?>
         </tbody>
     </table>

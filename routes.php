@@ -2,6 +2,7 @@
 use App\Helpers\Route;
 use App\Controllers\IndexController;
 use App\Controllers\SongController;
+use App\Controllers\FormController;
 
 Route::get('/index', [
     IndexController::class, 'index'
@@ -10,6 +11,14 @@ Route::get('/index', [
 Route::get('/songs', [
     SongController::class, 'index'
 ])->name('songs');
+
+Route::get('/form', [
+    FormController::class, 'index'
+])->name('testform');
+
+Route::post('/api/testform', [
+    FormController::class, 'post'
+]);
 
 /**
  * Je kan of een controller geven met een functie of een functie zelf, zie hieronder
