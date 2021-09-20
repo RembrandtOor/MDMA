@@ -2,7 +2,13 @@
 namespace App\Helpers;
 
 class View {
-    public static function render($view, $parameters) {
+    
+    /**
+     * Render view and give it given variables as an array
+     * @param string $view View name with folder as .
+     * @param array $parameters Variables to pass on to view
+     */
+    public static function render(string $view, array $parameters) {
         // replace . with / so you can use . in the name instead of /
         if(strpos($view, '.') !== false){
             $view = str_replace('.', '/', $view);
