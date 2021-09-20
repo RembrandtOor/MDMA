@@ -38,11 +38,26 @@ class Database {
             $prepared = $conn->prepare($query);
             $prepared->execute($parameters);
         } catch (\PDOException $e) {
-            echo 'Something wrong with a query<br>';
+            echo 'Something wrong with a query<br><br>';
             var_dump($query, $parameters);
+            echo '<br>';
             echo $e->getMessage();
         }
         
         return $prepared->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function create($query, $parameters = []) {
+        $conn = $this->construct();
+        
+        try {
+            $prepared = $conn->prepare($query);
+            $prepared->execute($parameters);
+            return $conn->lastInsertId();
+        } catch (\PDOException $e) {
+            echo 'Something wrong with a query<br>';
+            echo $e->getMessage();
+            return false;
+        }
     }
 }

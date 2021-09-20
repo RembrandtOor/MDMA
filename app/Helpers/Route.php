@@ -1,6 +1,8 @@
 <?php
 namespace App\Helpers;
 
+use App\Helpers\Request;
+
 class Route {
     private static $current;
     static $routes = [];
@@ -24,7 +26,7 @@ class Route {
      * @return self
      */
     public static function post(string $route, array|object $action) {
-        self::$routes['POST'][$route] = $action;
+        self::$routes['POST'][$route] = ['action' => $action, 'name' => ''];
         self::$current = ['method' => 'POST', 'route' => $route, 'action' => $action, 'name' => ''];
         return new self;
     }
@@ -51,7 +53,7 @@ class Route {
             $findroute = self::$routes[$method][$route];
 
             if(is_callable($findroute['action'])) {
-                echo $findroute['action']($request);
+                echo $findroute['action'](new Request($request));
                 return true;
             }
             if(is_array($findroute)) {
@@ -62,7 +64,7 @@ class Route {
                 $function_name = $findroute['action'][1];
 
                 $controller = new $findroute['action'][0];
-                echo $controller->$function_name();
+                echo $controller->$function_name(new Request($request));
                 return true;
             }
             echo 'CANNOT FIND CONTROLLER?';
@@ -70,6 +72,9 @@ class Route {
         echo '404 NOT FOUND';
     }
 
+    /**
+     * Register routes from routes file
+     */
     private static function registerRoutes() {
         require_once __DIR__.'/../../routes.php';
     }

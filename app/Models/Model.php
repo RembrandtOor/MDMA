@@ -7,6 +7,7 @@ class Model {
     private static $query;
     private static $database;
     private static $tableName;
+    private static $values;
 
     /**
      *  Create the model, set given parameters as variables;
@@ -22,12 +23,13 @@ class Model {
      * Custom static construct, creates model and sets values needed in other functions
      */
     public static function __constructStatic() {
-        if(strlen(self::$query) == 0) {
-            self::$query = 'SELECT * FROM '.self::$tableName;
-        }
+        // if(count(self::$va))
         self::$database = new Database();
         $splitted_name = explode('\\', strtolower(get_called_class()));
         self::$tableName = end($splitted_name).'s';
+        if(strlen(self::$query) == 0) {
+            self::$query = 'SELECT * FROM '.self::$tableName;
+        }
     }
 
     /**
@@ -47,31 +49,45 @@ class Model {
     /**
      * Finds row by id and return model of kind
      * @param int $id
-     * @return static $self
+     * @return static|null $self
      */
     public static function find(int $id) {
         self::__constructStatic();
-        self::$query .=  ' WHERE id='.$id;
-        return new self(self::$database->readOne(self::$query));
+        self::$query .= " WHERE `id`=:find_id";
+
+        $model = null;
+        $search = self::$database->readOne(self::$query, [':find_id' => $id]);
+        if($search != null) {
+            $model = new static($search);
+        }
+
+        return $model;
     }
 
     /**
      * Add where select to sql query
      * @param string $column
      * @param string $arg delimiter like >= or <= OR search value
-     * @param string $arg2 optional
+     * @param string|null $arg2 optional
      * @return self
      */
     public static function where(string $column, string $arg, string $arg2 = null) {
         self::__constructStatic();
-        if($arg2 == null) {
-            $value = $arg;
-            $delimiter = '=';
-        } else {
-            $delimiter = $arg;
+        $value = $arg2;
+        $delimiter = '=';
+        if($arg2 != null) {
             $value = $arg2;
+            $delimiter = $arg;
         }
-        self::$query .= " WHERE {$column}{$delimiter}{$value}";
+
+        $nr = mt_rand(0, 1000000);
+
+        self::$query .= " WHERE :column$nr:delimiter$nr:value$nr";
+        self::$values .= [
+            ':column'.$nr => $column,
+            ':delimiter'.$nr => $delimiter,
+            ':value'.$nr => $value
+        ];
         return new self;
     }
 
@@ -82,7 +98,10 @@ class Model {
      */
     public static function limit(int $limit) {
         self::__constructStatic();
-        self::$query .=  ' LIMIT '.$limit;
+        self::$query .=  ' LIMIT :limit';
+        self::$values .= [
+            ':limit' => $limit
+        ];
         return new self;
     }
 
@@ -91,9 +110,9 @@ class Model {
      * @param string $column column to sort by, default is 'id'
      * @return static
      */
-    public static function first($column = 'id') {
+    public static function first(string $column = 'id') {
         self::__constructStatic();
-        self::$query .=  ' ORDER BY id ASC LIMIT 1';
+        self::$query .=  ' ORDER BY `id` ASC LIMIT 1';
         return new static(self::$database->readOne(self::$query));
     }
 
@@ -104,7 +123,7 @@ class Model {
      */
     public static function last() {
         self::__constructStatic();
-        self::$query .=  ' ORDER BY id DESC LIMIT 1';
+        self::$query .=  ' ORDER BY `id` DESC LIMIT 1';
         return new static(self::$database->readOne(self::$query));
     }
 
@@ -115,10 +134,40 @@ class Model {
     public static function get() {
         self::__constructStatic();
         $models = [];
-        $rows = self::$database->read(self::$query);
+        $rows = self::$database->read(self::$query, self::$values);
         foreach($rows as $row) {
             $models[] = new static($row);
         }
         return $models;
+    }
+
+
+    public static function create(array $values = []) {
+        self::__constructStatic();
+
+        $query = 'INSERT INTO '.self::$tableName. ' (';
+            foreach($values as $key => $value) {
+                $query .= '`'.$key.'`';
+                if($key != array_key_last($values)) {
+                    $query .= ', ';
+                }
+            }
+        $query .= ') VALUES (';
+            foreach($values as $key => $value) {
+                $query .= ':'.$key;
+                if($key != array_key_last($values)) {
+                    $query .= ', ';
+                }
+            }
+        $query .= ')';
+
+        foreach($values as $key => $value) {
+            $values[':'.$key] = $value;
+            unset($values[$key]);
+        }
+
+        $id = self::$database->create($query, $values);
+
+        return self::find($id);
     }
 }
