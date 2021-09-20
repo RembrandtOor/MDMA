@@ -4,44 +4,54 @@ namespace App\Helpers;
 class Route {
     private static $current;
     static $routes = [];
-    // static $method, $route, $action, $name;
 
-    // public function __destruct() {
-    //     self::$routes[self::$method][self::$route] = ['action' => self::$action, 'name' => self::$name];
-    // }
-
-    public static function get($route, $action) {
-        // self::$routes['GET'][$route] = $action;
+    /**
+     * Add GET request route
+     * @param string $route Url of route you want to add
+     * @param array|object $action Function or array with class + function to call
+     * @return self
+     */
+    public static function get(string $route, array|object $action) {
         self::$routes['GET'][$route] = ['action' => $action, 'name' => ''];
         self::$current = ['method' => 'GET', 'route' => $route, 'action' => $action, 'name' => ''];
-        // self::$method = 'GET';
-        // self::$route = $route;
-        // self::$action = $action;
         return new self;
     }
 
-    public static function post($route, $action) {
+    /**
+     * Add POST request route
+     * @param string $route Url of route you want to add
+     * @param array|object $action Function or array with class + function to call
+     * @return self
+     */
+    public static function post(string $route, array|object $action) {
         self::$routes['POST'][$route] = $action;
-        // self::$method = 'GET';
-        // self::$route = $route;
-        // self::$action = $action;
-        // return new self;
+        self::$current = ['method' => 'POST', 'route' => $route, 'action' => $action, 'name' => ''];
+        return new self;
     }
 
-    public static function name($name) {
+    /**
+     * Add name to route for easier searching
+     * @param string $name
+     */
+    public static function name(string $name) {
         self::$current['name'] = $name;
         self::$routes[self::$current['method']][self::$current['route']] = ['action' => self::$current['action'], 'name' => $name];
-        // var_dump(self::$routes);
     }
 
-    public static function handle($method, $request) {
+    /**
+     * Handle the route and call function linked
+     * @param string $method
+     * @param string $request
+     */
+    public static function handle(string $method, array $request) {
         self::registerRoutes();
         $route = $request['route'] ?? '/index';
 
         if(self::$routes[$method][$route] ?? false) {
             $findroute = self::$routes[$method][$route];
-            if(is_callable($findroute)) {
-                echo $findroute();
+
+            if(is_callable($findroute['action'])) {
+                echo $findroute['action']($request);
                 return true;
             }
             if(is_array($findroute)) {
