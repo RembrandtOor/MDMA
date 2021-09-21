@@ -35,7 +35,7 @@
   right: 0;
   bottom: 0;
   background: #000000;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 @media (min-width: 1200px) {
@@ -46,7 +46,7 @@
     font-size: 6rem;
   }
   .lander h2 {
-    font-size: 7rem;
+    font-size: 5rem;
   }
 }
 

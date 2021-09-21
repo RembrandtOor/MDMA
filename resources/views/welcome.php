@@ -11,7 +11,7 @@
 <body>
     <div class="lander">
         <div class="logo">MDMA</div>
-        <h2>Welcome, start <span class="text-secondary">listening</span> right away</h2>
+        <h2>Welcome, start <span class="text-secondary">listening</span> right away.</h2>
         <a href="" class="btn btn-primary btn-xl">Start now</a>
     </div>    
 </body>
