@@ -6,7 +6,7 @@ class Database {
         $this->conn = $this->construct($host, $database, $username, $password, $type);
     }
 
-    private function construct($host = '127.0.0.1:3306', $database = 'mdma', $username = 'root', $password = 'password', $type = 'mysql') {
+    private function construct(string $host = '127.0.0.1:3306', string $database = 'mdma', string $username = 'root', string $password = 'password', string $type = 'mysql') {
         try {
             $pdo = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
         } catch (\PDOException $e) {
@@ -16,7 +16,7 @@ class Database {
         return $pdo;
     }
 
-    public function read($query, $parameters = []) {
+    public function read(string $query, array $parameters = []) {
         $conn = $this->construct();
         
         try {
@@ -31,7 +31,7 @@ class Database {
         return $prepared->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function readOne($query, $parameters = []) {
+    public function readOne(string $query, array $parameters = []) {
         $conn = $this->construct();
         
         try {
@@ -47,7 +47,7 @@ class Database {
         return $prepared->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function create($query, $parameters = []) {
+    public function create(string $query, array $parameters = []) {
         $conn = $this->construct();
         
         try {
