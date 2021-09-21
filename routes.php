@@ -8,6 +8,8 @@ use App\Controllers\SongController;
 // ])->name('welcome');
 
 Route::view('/index', 'welcome')->name('welcome');
+Route::view('/register', 'register')->name('register');
+Route::view('/login', 'login')->name('login');
 
 Route::get('/songs', [
     SongController::class, 'index'

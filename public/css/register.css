@@ -1,0 +1,60 @@
+.register-container {
+  width: 400px;
+  height: 600px;
+  background-color: black;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  background-color: #2C0540;
+  padding: 10px;
+  color: #fff;
+}
+
+label {
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
+}
+
+.btn-item {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.register-btn {
+  padding: 15px;
+  border-radius: 50px;
+  font-size: 20px;
+  color: #fff;
+  width: 250px;
+}
+
+@media (min-width: 1200px) {
+  .register-container {
+    width: 800px;
+    height: 600px;
+  }
+
+  input {
+    width: 500px;
+  }
+
+  label {
+    text-align: left;
+  }
+
+  .btn-item {
+    display: flex;
+    justify-content: right;
+  }
+}
+
+/*# sourceMappingURL=register.css.map */
