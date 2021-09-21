@@ -1,24 +1,96 @@
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
+@font-face {
+    font-family: 'Glory';
+    src: url(../fonts/Glory-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'A4 SPEED';
+    src: url(../fonts/A4SPEED-Bold.ttf);
+}
+
+.btn {
+    border-radius: 100px;
+    display: inline-flex;
+    padding: 15px 30px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #FFFFFF;
+
+    &.btn-lg {
+        padding: 20px 40px;
+        font-size: 22px;
+    }
+
+    &.btn-xl {
+        padding: 20px 38px;
+        font-size: 26px;
+    }
+}
+
+$colors: ("primary": #580980, "secondary": #E86A4D, "red": #B82F4D);
+
+@each $name, $color in $colors {
+    .bg-#{$name} {
+        background: $color;
+    }
+
+    .text-#{$name} {
+        color: $color;
+    }
+
+    .btn-#{$name} {
+        background: $color;
+        
+        &:hover {
+            background: darken($color, 10%);
+        }
+    }
+}
 
 body {
     background: #160220;
+    color: #FFFFFF;
+    font-family: 'Glory';
+    margin: 0;
 }
 
 nav {
-    .menu-toggler {
-        .icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+    .logo {
+        font-family: 'A4 SPEED';
+    }
+}
 
-            span {
-                background: white;
-                width: 100%;
-                height: 2px;
-            }
+// nav {
+//     .menu-toggler {
+//         .icon {
+//             display: flex;
+//             flex-direction: column;
+//             align-items: center;
+//             justify-content: space-between;
+
+//             span {
+//                 background: white;
+//                 width: 100%;
+//                 height: 2px;
+//             }
+//         }
+//     }
+// }
+
+@media (min-width: 768px) {
+    .btn {
+        font-size: 2rem;
+
+        &.btn-lg {
+            font-size: 3rem;
+        }
+
+        &.btn-xl {
+            padding: 2rem 4rem;
+            font-size: 3.5rem;
         }
     }
 }

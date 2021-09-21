@@ -1,0 +1,57 @@
+.lander {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/land_img_mob.jpeg);
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+
+    .logo {
+        font-family: 'A4 SPEED';
+        font-size: 3rem;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    h2 {
+        text-align: center;
+        font-weight: 400;
+        font-size: 2.5rem;
+    }
+
+    &>* {
+        z-index: 2;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #000000;
+        opacity: 0.5;
+    }
+}
+
+@media (min-width: 1200px) {
+    .lander {
+        background-image: url(../img/land_img_desk.jpeg);
+
+        .logo {
+            font-size: 6rem;
+        }
+
+        h2 {
+            font-size: 7rem;
+        }
+    }
+}
