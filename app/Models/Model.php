@@ -13,7 +13,7 @@ class Model {
      *  Create the model, set given parameters as variables;
      * @param array $data
      */
-    private function __construct($data = []) {
+    private function __construct(array $data = []) {
         foreach($data as $key => $value) {
             $this->$key = $value;
         }

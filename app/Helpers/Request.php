@@ -2,7 +2,7 @@
 namespace App\Helpers;
 
 class Request {
-    public function __construct($values = []) {
+    public function __construct(array $values = []) {
         foreach($values as $key => $value) {
             $this->$key = $this->cleanValue($value);
         }

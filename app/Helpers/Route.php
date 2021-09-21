@@ -13,7 +13,7 @@ class Route {
      * @param array|object $action Function or array with class + function to call
      * @return self
      */
-    public static function get(string $route, array|object $action) {
+    public static function get(string $route, $action) {
         self::$routes['GET'][$route] = ['action' => $action, 'name' => ''];
         self::$current = ['method' => 'GET', 'route' => $route, 'action' => $action, 'name' => ''];
         return new self;
@@ -25,7 +25,7 @@ class Route {
      * @param array|object $action Function or array with class + function to call
      * @return self
      */
-    public static function post(string $route, array|object $action) {
+    public static function post(string $route, $action) {
         self::$routes['POST'][$route] = ['action' => $action, 'name' => ''];
         self::$current = ['method' => 'POST', 'route' => $route, 'action' => $action, 'name' => ''];
         return new self;
