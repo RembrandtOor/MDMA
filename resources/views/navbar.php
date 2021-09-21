@@ -1,7 +1,5 @@
 <a href="<?php echo route('welcome') ?>">Home page</a>
 <a href="<?php echo route('songs') ?>">Songs page</a>
-<a href="<?php echo route('testform') ?>">Form test</a>
-
 
 <!-- <nav class="fixed left-0 top-0 right-0 w-100 flex px-5 py-3 shadow-sm" style="background: #2C0540;">
     <div class="mr-auto">MDMA</div>

@@ -32,12 +32,40 @@ class Route {
     }
 
     /**
+     * Add route that returns a view by default
+     * @param string $route
+     * @param string $view_name
+     * @return self
+     */
+    public static function view(string $route, string $view_name) {
+        self::$routes['GET'][$route] = [
+            'view' => $view_name, 
+            'name' => ''
+        ];
+        
+        self::$current = [
+            'method' => 'GET', 
+            'route' => $route, 
+            'view' => $view_name, 
+            'name' => ''
+        ];
+        return new self;
+    }
+
+    /**
      * Add name to route for easier searching
      * @param string $name
      */
     public static function name(string $name) {
         self::$current['name'] = $name;
-        self::$routes[self::$current['method']][self::$current['route']] = ['action' => self::$current['action'], 'name' => $name];
+
+        $data = [
+            'name' => $name
+        ];
+        if(isset(self::$current['action'])) $data['action'] = self::$current['action'];
+        if(isset(self::$current['view'])) $data['view'] = self::$current['view'];
+
+        self::$routes[self::$current['method']][self::$current['route']] = $data;
     }
 
     /**
@@ -52,10 +80,16 @@ class Route {
         if(self::$routes[$method][$route] ?? false) {
             $findroute = self::$routes[$method][$route];
 
+            if(isset($findroute['view'])) {
+                echo View::render($findroute['view']);
+                return true;
+            }
+
             if(is_callable($findroute['action'])) {
                 echo $findroute['action'](new Request($request));
                 return true;
             }
+            
             if(is_array($findroute)) {
                 // require_once __DIR__.'/../'.$findroute['action'][0].'.php';
                 // $controller_name = explode('/', $findroute['action'][0]);

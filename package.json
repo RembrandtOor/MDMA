@@ -1,0 +1,21 @@
+{
+  "name": "mdma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "watch": "sass resources/scss:public/css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RembrandtOor/MDMA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RembrandtOor/MDMA/issues"
+  },
+  "homepage": "https://github.com/RembrandtOor/MDMA#readme",
+  "description": ""
+}

@@ -19,14 +19,15 @@ function view(string $view_name, array $parameters = []) {
 function route(string $route_name) {
     foreach(Route::$routes[$_SERVER['REQUEST_METHOD']] as $route => $values){
         if($values['name'] == $route_name){
-            return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]/?route=".$route;
+            return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/?route=".$route;
         }
     }
-    return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]/?route=".$route_name;
+    return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/?route=".$route_name;
 }
 
 /**
- * 
+ * Redirect to given url
+ * @param string $url
  */
 function redirect(string $url) {
     header('Location: '.$url);

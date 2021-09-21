@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "Glory";
+  src: url(../fonts/Glory-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "A4 SPEED";
+  src: url(../fonts/A4SPEED-Bold.ttf);
+}
+.btn {
+  border-radius: 100px;
+  display: inline-flex;
+  padding: 15px 30px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.btn.btn-lg {
+  padding: 20px 40px;
+  font-size: 22px;
+}
+.btn.btn-xl {
+  padding: 20px 38px;
+  font-size: 26px;
+}
+
+.bg-primary {
+  background: #580980;
+}
+
+.text-primary {
+  color: #580980;
+}
+
+.btn-primary {
+  background: #580980;
+}
+.btn-primary:hover {
+  background: #370650;
+}
+
+.bg-secondary {
+  background: #E86A4D;
+}
+
+.text-secondary {
+  color: #E86A4D;
+}
+
+.btn-secondary {
+  background: #E86A4D;
+}
+.btn-secondary:hover {
+  background: #e24420;
+}
+
+.bg-red {
+  background: #B82F4D;
+}
+
+.text-red {
+  color: #B82F4D;
+}
+
+.btn-red {
+  background: #B82F4D;
+}
+.btn-red:hover {
+  background: #8f253c;
+}
+
+body {
+  background: #160220;
+  color: #FFFFFF;
+  font-family: "Glory";
+  margin: 0;
+}
+
+nav .logo {
+  font-family: "A4 SPEED";
+}
+
+@media (min-width: 768px) {
+  .btn {
+    font-size: 2rem;
+  }
+  .btn.btn-lg {
+    font-size: 3rem;
+  }
+  .btn.btn-xl {
+    padding: 2rem 4rem;
+    font-size: 3.5rem;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
