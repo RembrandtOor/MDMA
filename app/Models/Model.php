@@ -80,9 +80,14 @@ class Model {
         }
 
         $nr = mt_rand(0, 1000000);
+        $statement = 'WHERE';
+        if(strpos(self::$query, $statement) !== false) {
+            $statement = 'AND';
+        }
 
-        self::$query .= " WHERE :column$nr:delimiter$nr:value$nr";
-        self::$values .= [
+        self::$query .= " $statement :column$nr:delimiter$nr:value$nr";
+        self::$values = [
+            ...self::$values,
             ':column'.$nr => $column,
             ':delimiter'.$nr => $delimiter,
             ':value'.$nr => $value
@@ -98,7 +103,8 @@ class Model {
     public static function limit(int $limit) {
         self::__constructStatic();
         self::$query .=  ' LIMIT :limit';
-        self::$values .= [
+        self::$values.= [
+            ...self::$values,
             ':limit' => $limit
         ];
         return new self;

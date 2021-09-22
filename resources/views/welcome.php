@@ -12,7 +12,7 @@
     <div class="lander">
         <div class="logo">MDMA</div>
         <h2>Welcome, start <span class="text-secondary">listening</span> right away.</h2>
-        <a href="" class="btn btn-primary btn-xl">Start now</a>
+        <a href="<?= route('login') ?>" class="btn btn-primary btn-xl">Start now</a>
         <a href="#info" class="scroll-down">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 451.847 451.847;"
@@ -27,8 +27,8 @@
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#160220" fill-opacity="1" d="M0,160L60,154.7C120,149,240,139,360,144C480,149,600,171,720,186.7C840,203,960,213,1080,218.7C1200,224,1320,224,1380,224L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
     </div>    
 
-    <section id="info">
-        <img src="img/image_processing20210619-27954-l9gcd3.png">
-    </section>
+    <!-- <section id="info">
+        <img src="img/image_processing20210619-27954-l9gcd3.png" width="100%" height="auto">
+    </section> -->
 </body>
 </html>

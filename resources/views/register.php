@@ -1,55 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDMA - register</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/register.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MDMA - register</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/register.css">
+    </head>
+    <body>
+        <? require "navbar.php"?>
 
-<? require "navbar.php"?>
+        <div class="container flex-center h-100">
+            <form method="POST" action="" class="login-container">
+                <h1 class="text-center text-light">Create an account</h1>
+                
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" name="first_name" placeholder="first name">
+                </div>
 
-<body>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="username">
+                </div>
 
-    <div class="register-container">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="password">
+                </div>
 
-        <h1>Register</h1>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="password_conf" placeholder="confirm password">
+                </div>
 
-        <form action="" method="POST">
-
-            <div class="form-item">
-                <label for="firstname">First Name:</label>
-                <input type="text" name="firstname" id="firstname">
-            </div>
-
-            <div class="form-item">
-                <label for="firstname">User Name:</label>
-                <input type="text" name="username" id="username">
-            </div>
-
-            <div class="form-item">
-                <label for="firstname">Email:</label>
-                <input type="text" name="email" id="email">
-            </div>
-
-            <div class="form-item">
-                <label for="firstname">Password:</label>
-                <input type="text" name="password" id="password">
-            </div>
-
-            <div class="form-item">
-                <label for="firstname">Retype Password:</label>
-                <input type="text" name="repassword" id="repassword">
-            </div>
-
-            <div class="btn-item">
-                <input class="register-btn" type="submit" value="Create account">
-            </div>
+                <div class="btn-right">
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </div>
+            </form>
         </div>
-
-    </form>
-      
-</body>
+    </body>
 </html>

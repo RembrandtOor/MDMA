@@ -13,7 +13,7 @@
 
     .logo {
         font-family: 'A4 SPEED';
-        font-size: 3rem;
+        font-size: 2.5rem;
         position: absolute;
         top: 10%;
         left: 50%;
@@ -22,8 +22,10 @@
 
     h2 {
         text-align: center;
-        font-weight: 400;
+        font-weight: 200;
         font-size: 2.5rem;
+        max-width: 90%;
+        margin: 1rem auto;
     }
 
     > * {
@@ -87,36 +89,36 @@ section {
     height: 100vh;
 }
 
-// @media (min-width: 768px) {
-//     .lander {
-//         .scroll-down {
-//             width: 4rem;
-//             height: 4rem;
-//             padding: 2rem;
-//         }
-//     }
-// }
+@media (min-width: 768px) {
+    .lander {
+        .scroll-down {
+            // width: 4rem;
+            // height: 4rem;
+            // padding: 2rem;
+        }
+    }
+}
 
-// @media (min-width: 1025px) {
-//     .lander {
-//         .scroll-down {
-//             width: 2.5rem;
-//             height: 2.5rem;
-//             padding: 1.25rem;
-//         }
-//     }
-// }
+@media (min-width: 1025px) {
+    .lander {
+        .scroll-down {
+            // width: 2.5rem;
+            // height: 2.5rem;
+            // padding: 1.25rem;
+        }
+    }
+}
 
 @media (min-width: 1201px) {
     .lander {
         background-image: url(../img/land_img_desk.jpeg);
 
-        .logo {
-            font-size: 6rem;
-        }
+        // .logo {
+        //     font-size: 3rem;
+        // }
 
         h2 {
-            font-size: 5rem;
+            font-size: 3.25rem;
         }
 
         > .scroll-down img {
