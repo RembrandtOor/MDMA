@@ -48,9 +48,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 5rem;
-  width: 5rem;
-  padding: 2rem;
+  height: 2rem;
+  width: 2rem;
+  padding: 1rem;
 }
 .lander > .scroll-down:hover {
   background: rgba(255, 255, 255, 0.2);

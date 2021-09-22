@@ -70,7 +70,7 @@ class Route {
 
     /**
      * Handle the route and call function linked
-     * @param string $method
+     * @param string $method method of request, GET or POST
      * @param string $request
      */
     public static function handle(string $method, array $request) {

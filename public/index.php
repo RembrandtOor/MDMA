@@ -11,7 +11,6 @@ use App\Helpers\Route;
 // function handleRequest($method, $request) {
 //     Route::handle($method, $request);
 // }
-
 Route::handle($_SERVER['REQUEST_METHOD'], $_REQUEST);
 
 // handleRequest($_SERVER['REQUEST_METHOD'], $_REQUEST);

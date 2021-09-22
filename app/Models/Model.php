@@ -23,7 +23,6 @@ class Model {
      * Custom static construct, creates model and sets values needed in other functions
      */
     public static function __constructStatic() {
-        // if(count(self::$va))
         self::$database = new Database();
         $splitted_name = explode('\\', strtolower(get_called_class()));
         self::$tableName = end($splitted_name).'s';
