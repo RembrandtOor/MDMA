@@ -19,6 +19,7 @@
   color: #FFFFFF;
   border: none;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 .btn.btn-lg {
   padding: 20px 40px;
@@ -44,7 +45,10 @@
   background: #580980;
 }
 .btn-primary:hover {
-  background: #480768;
+  background: #680b98;
+}
+.btn-primary:active {
+  background: #370650;
 }
 
 .bg-secondary {
@@ -59,7 +63,10 @@
   background: #E86A4D;
 }
 .btn-secondary:hover {
-  background: #e55736;
+  background: #eb7d64;
+}
+.btn-secondary:active {
+  background: #e24420;
 }
 
 .bg-red {
@@ -74,7 +81,10 @@
   background: #B82F4D;
 }
 .btn-red:hover {
-  background: #a42a45;
+  background: #cb3556;
+}
+.btn-red:active {
+  background: #8f253c;
 }
 
 html, body {
@@ -90,6 +100,16 @@ html, body {
 
 nav .logo {
   font-family: "A4 SPEED";
+}
+
+.logo {
+  font-family: "A4 SPEED";
+  font-size: 2.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .container {
@@ -131,7 +151,7 @@ input {
   background: #790cb0;
   border: none;
   font-size: 16px;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   margin-bottom: 0.2rem;
   color: #FFFFFF;
   border-radius: 2px;

@@ -23,6 +23,7 @@
     color: #FFFFFF;
     border: none;
     cursor: pointer;
+    transition: all .2s ease-in-out;
 
     &.btn-lg {
         padding: 20px 40px;
@@ -54,7 +55,11 @@ $colors: ("primary": #580980, "secondary": #E86A4D, "red": #B82F4D);
         background: $color;
         
         &:hover {
-            background: darken($color, 5%);
+            background: lighten($color, 5%);
+        }
+
+        &:active {
+            background: darken($color, 10%);
         }
     }
 }
@@ -74,6 +79,16 @@ nav {
     .logo {
         font-family: 'A4 SPEED';
     }
+}
+
+.logo {
+    font-family: 'A4 SPEED';
+    font-size: 2.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .container {
@@ -116,7 +131,7 @@ input {
     background: lighten(map.get($colors, 'primary'), 10%);
     border: none;
     font-size: 16px;
-    padding: .5rem 1rem;
+    padding: .75rem 1.25rem;
     margin-bottom: .2rem;
     color: #FFFFFF;
     border-radius: 2px;

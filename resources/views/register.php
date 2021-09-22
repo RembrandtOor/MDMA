@@ -9,10 +9,9 @@
         <link rel="stylesheet" href="css/register.css">
     </head>
     <body>
-        <? require "navbar.php"?>
-
         <div class="container flex-center h-100">
             <form method="POST" action="" class="login-container">
+                <a href="<?= route('index'); ?>" class="logo text-center">MDMA</a>
                 <h1 class="text-center text-light">Create an account</h1>
                 
                 <div class="form-group">
@@ -34,6 +33,8 @@
                     <label>Confirm Password</label>
                     <input type="password" name="password_conf" placeholder="confirm password">
                 </div>
+
+                <span>Already have an account? <a href="<?= route('login'); ?>">Login now.</a></span>
 
                 <div class="btn-right">
                     <button type="submit" class="btn btn-primary">Create Account</button>

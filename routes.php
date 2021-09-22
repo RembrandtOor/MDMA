@@ -7,7 +7,7 @@ use App\Controllers\SongController;
 //     IndexController::class, 'index'
 // ])->name('welcome');
 
-Route::view('/index', 'welcome')->name('welcome');
+Route::view('/index', 'welcome')->name('index');
 Route::view('/register', 'register')->name('register');
 Route::view('/login', 'login')->name('login');
 
