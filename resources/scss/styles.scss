@@ -45,7 +45,7 @@ $colors: ("primary": #580980, "secondary": #E86A4D, "red": #B82F4D);
         background: $color;
         
         &:hover {
-            background: darken($color, 10%);
+            background: darken($color, 5%);
         }
     }
 }
@@ -55,6 +55,7 @@ body {
     color: #FFFFFF;
     font-family: 'Glory';
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 nav {
@@ -81,11 +82,30 @@ nav {
 // }
 
 @media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+    .btn {
+        font-size: 1.25rem;
+
+        &.btn-lg {
+            font-size: 1.75rem;
+        }
+
+        &.btn-xl {
+            padding: 1.5rem 3rem;
+            font-size: 2.5rem;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
     .btn {
         font-size: 2rem;
 
         &.btn-lg {
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         &.btn-xl {

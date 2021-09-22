@@ -37,8 +37,47 @@
   background: #000000;
   opacity: 0.7;
 }
+.lander > .scroll-down {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  width: 5rem;
+  padding: 2rem;
+}
+.lander > .scroll-down:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.lander > .scroll-down > img {
+  width: 3rem;
+  height: 3rem;
+}
+.lander > .scroll-down > svg {
+  width: 100%;
+  height: auto;
+  fill: rgba(255, 255, 255, 0.75);
+}
+.lander > .waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
 
-@media (min-width: 1200px) {
+section {
+  width: 100vh;
+  height: 100vh;
+}
+
+@media (min-width: 1201px) {
   .lander {
     background-image: url(../img/land_img_desk.jpeg);
   }
@@ -47,6 +86,10 @@
   }
   .lander h2 {
     font-size: 5rem;
+  }
+  .lander > .scroll-down img {
+    width: 8rem;
+    height: 8rem;
   }
 }
 

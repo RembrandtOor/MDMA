@@ -38,7 +38,7 @@
   background: #580980;
 }
 .btn-primary:hover {
-  background: #370650;
+  background: #480768;
 }
 
 .bg-secondary {
@@ -53,7 +53,7 @@
   background: #E86A4D;
 }
 .btn-secondary:hover {
-  background: #e24420;
+  background: #e55736;
 }
 
 .bg-red {
@@ -68,7 +68,7 @@
   background: #B82F4D;
 }
 .btn-red:hover {
-  background: #8f253c;
+  background: #a42a45;
 }
 
 body {
@@ -76,18 +76,31 @@ body {
   color: #FFFFFF;
   font-family: "Glory";
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 nav .logo {
   font-family: "A4 SPEED";
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+  .btn {
+    font-size: 1.25rem;
+  }
+  .btn.btn-lg {
+    font-size: 1.75rem;
+  }
+  .btn.btn-xl {
+    padding: 1.5rem 3rem;
+    font-size: 2.5rem;
+  }
+}
+@media (min-width: 1200px) {
   .btn {
     font-size: 2rem;
   }
   .btn.btn-lg {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .btn.btn-xl {
     padding: 2rem 4rem;
