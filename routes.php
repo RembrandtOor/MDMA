@@ -11,6 +11,9 @@ Route::view('/index', 'welcome')->name('index');
 Route::view('/register', 'register')->name('register');
 Route::view('/login', 'login')->name('login');
 
+Route::view('/playlists', 'playlists')->name('playlists');
+Route::view('/playlist', 'playlist')->name('playlist');
+
 Route::get('/songs', [
     SongController::class, 'index'
 ])->name('songs');

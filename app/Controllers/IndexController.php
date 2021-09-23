@@ -3,6 +3,6 @@ namespace App\Controllers;
 
 class IndexController {    
     public function index() {
-        return view('index', ['hello' => 'dani']);
+        return view('index');
     }
 }
