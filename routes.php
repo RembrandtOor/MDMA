@@ -10,6 +10,7 @@ use App\Controllers\SongController;
 Route::view('/index', 'welcome')->name('index');
 Route::view('/register', 'register')->name('register');
 Route::view('/login', 'login')->name('login');
+Route::view('/playlists', 'playlists')->name('playlists');
 
 Route::get('/songs', [
     SongController::class, 'index'
