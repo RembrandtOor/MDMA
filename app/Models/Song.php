@@ -4,7 +4,11 @@ namespace App\Models;
 use App\Models\Model;
 
 class Song extends Model {
-    public function cool() {
-        return 'yes';
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getArtist() {
+        return $this->artist;
     }
 }
