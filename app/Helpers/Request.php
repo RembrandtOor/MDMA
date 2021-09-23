@@ -14,6 +14,7 @@ class Request {
      * @return string
      */
     private function cleanValue(string $value) {
-        return preg_replace("/[^a-zA-Z]/", "", $value);
+        // return preg_replace("/[^a-zA-Z]/", "", $value);
+        return $value;
     }
 }

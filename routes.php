@@ -2,6 +2,7 @@
 use App\Helpers\Route;
 use App\Controllers\IndexController;
 use App\Controllers\SongController;
+use App\Controllers\PlaylistController;
 
 // Route::get('/index', [
 //     IndexController::class, 'index'
@@ -11,8 +12,17 @@ Route::view('/index', 'welcome')->name('index');
 Route::view('/register', 'register')->name('register');
 Route::view('/login', 'login')->name('login');
 
-Route::view('/playlists', 'playlists')->name('playlists');
-Route::view('/playlist', 'playlist')->name('playlist');
+Route::get('/playlists', [
+    PlaylistController::class, 'index'
+])->name('playlists');
+
+// Route::get('/playlist/{id}', [
+//     PlaylistController::class, 'show'
+// ])->name('playlist');
+
+Route::get('/playlist', [
+    PlaylistController::class, 'show'
+])->name('playlist');
 
 Route::get('/songs', [
     SongController::class, 'index'
@@ -24,3 +34,7 @@ Route::get('/songs', [
 Route::get('/test', function($request) {
     echo 'Hello 1+1='.(1+1);
 });
+
+Route::get('/api/playlists', [
+    PlaylistController::class, 'getList'
+]);

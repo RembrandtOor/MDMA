@@ -16,13 +16,18 @@ function view(string $view_name, array $parameters = []) {
  * @param string $route_name 
  * @return string
  */
-function route(string $route_name) {
+function route(string $route_name, array $parameters = []) {
     foreach(Route::$routes[$_SERVER['REQUEST_METHOD']] as $route => $values){
         if($values['name'] == $route_name){
-            return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]".dirname($_SERVER['PHP_SELF'])."/?route=".$route;
+            $route_name = $route;
         }
     }
-    return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]".dirname($_SERVER['PHP_SELF'])."/?route=".$route_name;
+    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
+    $url .= "://$_SERVER[HTTP_HOST]".dirname($_SERVER['PHP_SELF'])."/?route=".$route_name;
+    foreach($parameters as $key => $value){
+        $url .= "&$key=$value";
+    }
+    return $url;
 }
 
 /**
