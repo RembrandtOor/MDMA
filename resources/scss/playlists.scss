@@ -6,8 +6,8 @@
 }
 
 .content {
-    width: 100%;
-    height: 100%;
+    width: 100vd;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,7 +18,7 @@ h1 {
     text-align: center;
     font-weight: 200;
     font-size: 2.5rem;
-    max-width: 90%;
+    max-width: 90vh;
     margin: 1rem auto;
 }
 
@@ -28,6 +28,9 @@ h1 {
     position: fixed;
     bottom: 0;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
   }
   
   .navbar a {
@@ -46,9 +49,10 @@ h1 {
   }
   
   .navbar a.active {
-    background-color: black;
+    background-color: #160220;
     color: white;
   }
+
 .container {
     margin: {
         top: 2rem;
@@ -129,5 +133,11 @@ h1 {
                 }
             }
         }
+    }
+}
+
+@media (min-width: 1200px) {
+    .navbar {
+        display: none;
     }
 }

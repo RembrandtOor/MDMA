@@ -17,12 +17,6 @@
         <a href="<?= route('login') ?>" class="btn btn-primary btn-xS">+ CREATE PLAYLIST</a>
     </div>
 
-    <div class="navbar">
-        <a href="#" class="active"><i class="fas fa-home"></i></a>
-        <a href="#"><i class="fas fa-search"></i></a>
-        <a href="#"><i class="fas fa-cog"></i></a>
-    </div>
-
 </body>
     <head>
         <meta charset="UTF-8">
@@ -67,5 +61,12 @@
                 <?php endfor ?>
             </div>
         </div>
+        
+        <div class="navbar">
+            <a href="#" class="active"><i class="fas fa-home fa-2x"></i></a>
+            <a href="#"><i class="fas fa-search fa-2x"></i></a>
+            <a href="#"><i class="fas fa-cog fa-2x"></i></a>
+        </div>
+
     </body>
 </html>
