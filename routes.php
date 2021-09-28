@@ -15,6 +15,9 @@ Route::view('/playlists', 'playlists')->name('playlists');
 Route::view('/playlists', 'playlists')->name('playlists');
 Route::view('/playlist', 'playlist')->name('playlist');
 
+Route::view('/logout', 'logout')->name('logout');
+
+
 Route::get('/songs', [
     SongController::class, 'index'
 ])->name('songs');

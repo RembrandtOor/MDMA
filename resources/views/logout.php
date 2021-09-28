@@ -8,16 +8,19 @@
     <title>MDMA - logout</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/playlist.css">
+
 </head>
 
 <body>
     <div class="container flex-center h-100">
         <a href="<?= route('index'); ?>" class="logo text-center">MDMA</a>
-        <h1 class="text-center text-light">Logout</h1>
-        <hr>
-        <span>You have been successfully logged out.</span>
+        <h1 class="text-left text-light">Logout</h1>
+        <div class="splitter"></div>
+        <h2>You have been successfully logged out.</h2>
+        <br>
         <div class="btn-right">
-            <button type="submit" class="btn btn-primary"><?= route('login'); ?>Click here to log in again</button>
+            <a href="<?= route('login') ?>" class="btn btn-primary btn-xS">Click here to log in again</a>
         </div>
     </div>
 </body>
