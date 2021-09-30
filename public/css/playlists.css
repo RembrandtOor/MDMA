@@ -2,15 +2,25 @@
   position: absolute;
   top: 10%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 
 .content {
   width: 100vd;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -28,8 +38,13 @@ h1 {
   position: fixed;
   bottom: 0;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
 }
 
@@ -60,15 +75,23 @@ h1 {
 
 .search-bar {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
 .search-bar input {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   background: rgba(255, 255, 255, 0.15);
 }
+
 .search-bar .add-playlist-btn img {
   width: 2rem;
 }
@@ -82,34 +105,57 @@ h1 {
 
 .playlist-list {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   gap: 1rem;
 }
+
 .playlist-list .playlist {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
+
 .playlist-list .playlist > * {
   padding: 0.2rem 0.4rem;
 }
+
 .playlist-list .playlist .playlist-img {
   height: 3rem;
   width: 3rem;
   border-radius: 5px;
 }
+
 .playlist-list .playlist .playlist-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
+
 .playlist-list .playlist .playlist-details .playlist-name {
   font-size: 20px;
 }
+
 .playlist-list .playlist .playlist-details .playlist-author {
   font-size: 16px;
 }
+
 .playlist-list .playlist .playlist-buttons .icon-btn img {
   height: 1.25rem;
   width: 1.25rem;
@@ -120,5 +166,6 @@ h1 {
     display: none;
   }
 }
+/*# sourceMappingURL=playlists.css.map */
 
 /*# sourceMappingURL=playlists.css.map */

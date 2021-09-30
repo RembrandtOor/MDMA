@@ -86,12 +86,10 @@ class Model {
         }
 
         self::$query .= " $statement :column$nr:delimiter$nr:value$nr";
-        self::$values = [
-            ...self::$values,
-            ':column'.$nr => $column,
-            ':delimiter'.$nr => $delimiter,
-            ':value'.$nr => $value
-        ];
+        self::$values[':column'.$nr] = $column;
+        self::$values[':delimiter'.$nr] = $delimiter;
+        self::$values[':value'.$nr] = $value;
+    
         return new self;
     }
 
@@ -104,8 +102,7 @@ class Model {
         self::__constructStatic();
         self::$query .=  ' LIMIT :limit';
         self::$values.= [
-            ...self::$values,
-            ':limit' => $limit
+            self::$values,':limit' => $limit
         ];
         return new self;
     }

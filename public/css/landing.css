@@ -1,9 +1,18 @@
 .lander {
   width: 100vw;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   background-image: url(../img/land_img_mob.jpeg);
   background-position: center center;
@@ -11,12 +20,15 @@
   background-attachment: fixed;
   position: relative;
 }
+
 .lander .logo {
   position: absolute;
   top: 10%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
 .lander h2 {
   text-align: center;
   font-weight: 200;
@@ -24,9 +36,11 @@
   max-width: 90%;
   margin: 1rem auto;
 }
+
 .lander > * {
   z-index: 2;
 }
+
 .lander:after {
   content: "";
   position: absolute;
@@ -37,33 +51,49 @@
   background: #000000;
   opacity: 0.7;
 }
+
 .lander > .scroll-down {
   position: absolute;
   left: 50%;
   bottom: 5%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   height: 2rem;
   width: 2rem;
   padding: 1rem;
 }
+
 .lander > .scroll-down:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
 .lander > .scroll-down > img {
   width: 3rem;
   height: 3rem;
 }
+
 .lander > .scroll-down > svg {
   width: 100%;
   height: auto;
   fill: rgba(255, 255, 255, 0.75);
 }
+
 .lander > .waves {
   position: absolute;
   bottom: 0;
@@ -81,13 +111,16 @@ section {
   .lander {
     background-image: url(../img/land_img_desk.jpeg);
   }
+
   .lander h2 {
     font-size: 3.25rem;
   }
+
   .lander > .scroll-down img {
     width: 8rem;
     height: 8rem;
   }
 }
+/*# sourceMappingURL=landing.css.map */
 
 /*# sourceMappingURL=landing.css.map */
