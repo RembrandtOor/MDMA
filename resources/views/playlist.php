@@ -22,7 +22,7 @@
 
             <div class="search-bar">
                 <input type="text class="search-input" placeholder="Search">
-                <a class="add-song-btn" href="#">
+                <a class="add-song-btn" href="addsong.php">
                     <img src="img/plus-2.png">
                 </a>
             </div>

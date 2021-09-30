@@ -15,6 +15,7 @@ Route::view('/playlists', 'playlists')->name('playlists');
 Route::view('/playlists', 'playlists')->name('playlists');
 Route::view('/playlist', 'playlist')->name('playlist');
 Route::view('/settings', 'settings')->name('settings');
+Route::view('/addsong', 'addsong')->name('addsong');
 
 
 Route::view('/logout', 'logout')->name('logout');
