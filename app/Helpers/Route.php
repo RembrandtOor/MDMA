@@ -75,10 +75,7 @@ class Route {
      */
     public static function handle(string $method, array $request) {
         self::registerRoutes();
-        $route = $_SERVER['REQUEST_URI'] ?? '/index';
-        if(isset($request['route'])) {
-            $route = $request['route'];
-        }        
+        $route = $request['route'] ?? $_SERVER['REQUEST_URI']; 
 
         $route_rep = preg_replace('/\/[1-9]/', '/{.*}', $route);
         $route_rep = '/'.preg_replace('/\//', '\/', $route_rep).'/';

@@ -23,7 +23,14 @@ function route(string $route_name, array $parameters = []) {
         }
     }
     $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
-    $url .= "://$_SERVER[HTTP_HOST]".dirname($_SERVER['PHP_SELF'])."/?route=".$route_name;
+    $url .= "://$_SERVER[HTTP_HOST]".dirname($_SERVER['PHP_SELF']);
+
+    if(isset($_REQUEST['route'])) {
+        $url .= "/?route=";
+    }
+
+    $url .= substr($route_name, 1);
+
     foreach($parameters as $key => $value){
         $url .= "&$key=$value";
     }
