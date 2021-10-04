@@ -7,7 +7,7 @@ class Model {
     private static $query;
     private static $database;
     private static $tableName;
-    private static $values;
+    private static array $values = [];
 
     /**
      *  Create the model, set given parameters as variables;
@@ -45,17 +45,23 @@ class Model {
         return $models;
     }
 
+    public static function allJSON() {
+        self::__constructStatic();
+        $rows = self::$database->read('SELECT * FROM '.self::$tableName);
+        return json_encode($rows);
+    }
+
     /**
      * Finds row by id and return model of kind
      * @param int $id
      * @return static|null $self
      */
-    public static function find(int $id) {
+    public static function find($id) {
         self::__constructStatic();
         self::$query .= " WHERE `id`=:find_id";
 
         $model = null;
-        $search = self::$database->readOne(self::$query, [':find_id' => $id]);
+        $search = self::$database->readOne(self::$query, [':find_id' => intval($id)]);
         if($search != null) {
             $model = new static($search);
         }
@@ -72,7 +78,7 @@ class Model {
      */
     public static function where(string $column, string $arg, string $arg2 = null) {
         self::__constructStatic();
-        $value = $arg2;
+        $value = $arg;
         $delimiter = '=';
         if($arg2 != null) {
             $value = $arg2;
@@ -90,6 +96,13 @@ class Model {
         self::$values[':delimiter'.$nr] = $delimiter;
         self::$values[':value'.$nr] = $value;
     
+        self::$query .= " $statement :column$nr :delimiter$nr :value$nr";
+        self::$values = [
+            ...self::$values,
+            ':column'.$nr => $column,
+            ':delimiter'.$nr => $delimiter,
+            ':value'.$nr => $value
+        ];
         return new self;
     }
 
@@ -143,6 +156,11 @@ class Model {
         return $models;
     }
 
+    public static function getJSON() {
+        self::__constructStatic();
+        $rows = self::$database->read(self::$query, self::$values);
+        return json_encode($rows);
+    }
 
     public static function create(array $values = []) {
         self::__constructStatic();

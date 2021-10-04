@@ -40,13 +40,12 @@
 
             
             <div class="playlist-list">
-                <?php for($i=0; $i < 5; $i++):?>
-                <!-- <a href="<?= route('playlist'); ?>"> -->
+                <?php foreach($playlists as $playlist):?>
                     <div class="playlist">
-                        <img class="playlist-img" src="img/images.jpeg">
+                        <img class="playlist-img" src="<?= $playlist->getIconUrl() ?>">
                         <div class="playlist-details">
-                            <a class="playlist-name" href="<?= route('playlist'); ?>">Thunderstruck</a>
-                            <div class="playlist-author">Group name</div>
+                            <a class="playlist-name" href="<?= route('playlist', ['id' => $playlist->getId()]); ?>"><?= $playlist->getName() ?></a>
+                            <!-- <div class="playlist-author">Group name</div> -->
                         </div>
                         <div class="playlist-buttons">
                             <a href="#" class="icon-btn">
@@ -57,8 +56,7 @@
                             </a>
                         </div>
                     </div>
-                <!-- </a> -->
-                <?php endfor ?>
+                <?php endforeach ?>
             </div>
         </div>
         

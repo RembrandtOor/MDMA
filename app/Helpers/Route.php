@@ -75,10 +75,20 @@ class Route {
      */
     public static function handle(string $method, array $request) {
         self::registerRoutes();
-        $route = $request['route'] ?? '/index';
+        $route = $request['route'] ?? $_SERVER['REQUEST_URI']; 
 
-        if(self::$routes[$method][$route] ?? false) {
+        $route_rep = preg_replace('/\/[1-9]/', '/{.*}', $route);
+        $route_rep = '/'.preg_replace('/\//', '\/', $route_rep).'/';
+
+        $find_routes = preg_grep($route_rep, array_keys(self::$routes[$method]));
+        if(count($find_routes) > 0) {
             $findroute = self::$routes[$method][$route];
+            if($findroute == null) {
+                $route_url = array_values($find_routes)[0];
+                $findroute = self::$routes[$method][$route_url];
+            }
+            // $parameters = preg_match_all('/{(.*)}/', $route_url, $matches);
+            // var_dump($matches);
 
             if(isset($findroute['view'])) {
                 echo View::render($findroute['view']);
