@@ -5,7 +5,10 @@ use App\Helpers\Request;
 
 class Route {
     private static $current;
-    static $routes = [];
+    static $routes = [
+        'POST' => [],
+        'GET' => []
+    ];
 
     /**
      * Add GET request route
@@ -96,7 +99,9 @@ class Route {
             }
 
             if(is_callable($findroute['action'])) {
-                echo $findroute['action'](new Request($request));
+                $container = new \DI\Container();
+                $container->call($findroute['action']);
+                // echo $findroute['action'](new Request($request));
                 return true;
             }
             
@@ -106,9 +111,11 @@ class Route {
                 // $controller_name = end($controller_name);
 
                 $function_name = $findroute['action'][1];
+                $controller_name = $findroute['action'][0];
 
-                $controller = new $findroute['action'][0];
-                echo $controller->$function_name(new Request($request));
+                $container = new \DI\Container();
+                $container->call([$controller_name, $function_name]);
+                // echo $controller->$function_name(new Request($request));
                 return true;
             }
             echo 'CANNOT FIND CONTROLLER?';

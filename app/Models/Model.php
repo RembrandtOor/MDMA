@@ -58,10 +58,10 @@ class Model {
      */
     public static function find($id) {
         self::__constructStatic();
-        self::$query .= " WHERE `id`=:find_id";
+        self::$query .= " WHERE id=:id";
 
         $model = null;
-        $search = self::$database->readOne(self::$query, [':find_id' => intval($id)]);
+        $search = self::$database->readOne(self::$query, [':id' => intval($id)]);
         if($search != null) {
             $model = new static($search);
         }
@@ -91,19 +91,25 @@ class Model {
             $statement = 'AND';
         }
 
-        self::$query .= " $statement :column$nr:delimiter$nr:value$nr";
+        self::$query .= " $statement :column$nr :delimiter$nr :value$nr";
         self::$values[':column'.$nr] = $column;
         self::$values[':delimiter'.$nr] = $delimiter;
         self::$values[':value'.$nr] = $value;
-    
-        self::$query .= " $statement :column$nr :delimiter$nr :value$nr";
-        self::$values = [
-            ...self::$values,
-            ':column'.$nr => $column,
-            ':delimiter'.$nr => $delimiter,
-            ':value'.$nr => $value
-        ];
+
         return new self;
+    }
+
+    /**
+     * Select first column from where clause.
+     * @param string $column
+     * @param string $arg delimiter like >= or <= OR search value
+     * @param string|null $arg2 optional
+     * @return object App\Models\Model
+     */
+    public static function firstWhere(string $column, string $arg, string $arg2 = null) {
+        self::__constructStatic();
+        self::where($column, $arg, $arg2);
+        var_dump(self::get());
     }
 
     /**
@@ -114,9 +120,11 @@ class Model {
     public static function limit(int $limit) {
         self::__constructStatic();
         self::$query .=  ' LIMIT :limit';
-        self::$values.= [
-            self::$values,':limit' => $limit
-        ];
+        self::$values[':limit'] = $limit;
+
+        // self::$values.= [
+        //     self::$values,':limit' => $limit
+        // ];
         return new self;
     }
 
@@ -127,8 +135,8 @@ class Model {
      */
     public static function first(string $column = 'id') {
         self::__constructStatic();
-        self::$query .=  ' ORDER BY `id` ASC LIMIT 1';
-        return new static(self::$database->readOne(self::$query));
+        self::$query .=  ' ORDER BY id ASC LIMIT 1';
+        return new static(self::$database->readOne(self::$query, self::$values));
     }
 
     /**
