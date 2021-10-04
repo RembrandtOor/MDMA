@@ -3,7 +3,7 @@ namespace App\Helpers;
 
 class Database {
     public function __construct($host = '127.0.0.1:3306', $database = 'mdma', $username = 'root', $password = 'password', $type = 'mysql') {
-        $this->conn = $this->construct($host, $database, $username, $password, $type);
+        $this->conn = $this->construct($_ENV['DB_HOST'] ?? $host, $_ENV['DB_NAME'] ?? $database, $_ENV['DB_USERNAME'] ?? $username, $_ENV['DB_PASSWORD'] ?? $password, $type);
     }
 
     private function construct(string $host = '127.0.0.1:3306', string $database = 'mdma', string $username = 'root', string $password = 'password', string $type = 'mysql') {
