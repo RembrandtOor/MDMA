@@ -10,7 +10,7 @@ class Database {
         try {
             $pdo = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
         } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage());
+            // throw new \PDOException($e->getMessage());
         }
 
         return $pdo;

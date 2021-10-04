@@ -81,6 +81,7 @@ class Route {
         $route_rep = '/'.preg_replace('/\//', '\/', $route_rep).'/';
 
         $find_routes = preg_grep($route_rep, array_keys(self::$routes[$method]));
+        var_dump($route);
         if(count($find_routes) > 0) {
             $findroute = self::$routes[$method][$route];
             if($findroute == null) {
