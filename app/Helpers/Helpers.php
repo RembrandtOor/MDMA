@@ -45,3 +45,14 @@ function redirect(string $url) {
     header('Location: '.$url);
     exit();
 }
+
+class response {
+    public function json(array $data) {
+        header('Content-type: application/json');
+        exit(json_encode($data));
+    }
+}
+
+function response() {
+    return new response();
+}
