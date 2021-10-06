@@ -50,6 +50,9 @@ class RegisterController {
     }
         
     public function index() {
+        if(Auth::check()) {
+            return redirect('playlists');
+        }
         return view('register');
     }
 }

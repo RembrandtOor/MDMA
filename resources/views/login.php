@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container flex-center h-100">
-            <form method="POST" action="" class="login-container">
+            <form method="POST" action="" class="login-container" id="login-form">
                 <a href="<?= route('index'); ?>" class="logo text-center">MDMA</a>
                 <h1 class="text-center text-light">Login</h1>
                 
@@ -31,5 +31,8 @@
                 </div>
             </form>
         </div>
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>

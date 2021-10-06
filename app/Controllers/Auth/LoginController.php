@@ -31,6 +31,9 @@ class LoginController {
     }
         
     public function index() {
+        if(Auth::check()) {
+            return redirect('playlists');
+        }
         return view('login');
     }
 }

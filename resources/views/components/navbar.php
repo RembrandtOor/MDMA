@@ -1,7 +1,7 @@
 <div class="navbar">
     <a href="#" class="active"><i class="fas fa-home fa-2x"></i></a>
     <a href="#"><i class="fas fa-search fa-2x"></i></a>
-    <a href="#"><i class="fas fa-cog fa-2x"></i></a>
+    <a href="<?= route('logout'); ?>"><i class="fas fa-cog fa-2x"></i></a>
 </div>
 
 <!-- <a href="<?php echo route('welcome') ?>">Home page</a>
