@@ -9,7 +9,7 @@ class Database {
     private function construct(string $host = '127.0.0.1:3306', string $database = 'mdma', string $username = 'root', string $password = 'password', string $type = 'mysql') {
         try {
             $pdo = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
+            // $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage());
         }
@@ -47,9 +47,7 @@ class Database {
             echo $e->getMessage();
             echo '<br><br>';
         }
-        $stuff = $prepared->fetch(\PDO::FETCH_ASSOC);
-        var_dump($stuff);
-        return $stuff;
+        return $prepared->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function create(string $query, array $parameters = []) {

@@ -85,16 +85,13 @@ class Model {
             $delimiter = $arg;
         }
 
-        $nr = mt_rand(0, 1000000);
         $statement = 'WHERE';
         if(strpos(self::$query, $statement) !== false) {
             $statement = 'AND';
         }
 
-        self::$query .= " $statement :column$nr :delimiter$nr :value$nr";
-        self::$values[':column'.$nr] = $column;
-        self::$values[':delimiter'.$nr] = $delimiter;
-        self::$values[':value'.$nr] = $value;
+        self::$query .= " $statement $column $delimiter ?";
+        self::$values[] = $value;
 
         return new self;
     }
@@ -109,7 +106,7 @@ class Model {
     public static function firstWhere(string $column, string $arg, string $arg2 = null) {
         self::__constructStatic();
         self::where($column, $arg, $arg2);
-        var_dump(self::get());
+        return self::first();
     }
 
     /**
@@ -119,8 +116,8 @@ class Model {
      */
     public static function limit(int $limit) {
         self::__constructStatic();
-        self::$query .=  ' LIMIT :limit';
-        self::$values[':limit'] = $limit;
+        self::$query .=  ' LIMIT ?';
+        self::$values[] = $limit;
 
         // self::$values.= [
         //     self::$values,':limit' => $limit
@@ -135,7 +132,6 @@ class Model {
      */
     public static function first(string $column = 'id') {
         self::__constructStatic();
-        self::$query .=  ' ORDER BY id ASC LIMIT 1';
         return new static(self::$database->readOne(self::$query, self::$values));
     }
 
@@ -144,10 +140,22 @@ class Model {
      * @param string $column column to sort by, default is 'id'
      * @return static
      */
-    public static function last() {
+    public static function last(string $column = 'id') {
         self::__constructStatic();
-        self::$query .=  ' ORDER BY `id` DESC LIMIT 1';
-        return new static(self::$database->readOne(self::$query));
+        self::orderByDesc($column);
+        return self::limit(1);
+    }
+
+    public static function orderBy(string $column) {
+        self::$query .= "ORDER BY `$column` ASC";
+        return new self;
+        // return new static(self::$database->readOne(self::$query));
+    }
+
+    public static function orderByDesc(string $column) {
+        self::$query .= "ORDER BY `$column` DESC";
+        return new self;
+        // return new static(self::$database->readOne(self::$query));
     }
 
     /**
