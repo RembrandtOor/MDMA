@@ -9,9 +9,8 @@ class Database {
     private function construct(string $host = '127.0.0.1:3306', string $database = 'mdma', string $username = 'root', string $password = 'password', string $type = 'mysql') {
         try {
             $pdo = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
-            // $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
         } catch (\PDOException $e) {
-            // throw new \PDOException($e->getMessage());
+            throw new \PDOException($e->getMessage());
         }
 
         return $pdo;

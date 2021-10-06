@@ -31,7 +31,7 @@
 
                 <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" name="password_conf" placeholder="confirm password">
+                    <input type="password" name="password_confirm" placeholder="confirm password">
                 </div>
 
                 <span>Already have an account? <a href="<?= route('login'); ?>">Login now.</a></span>

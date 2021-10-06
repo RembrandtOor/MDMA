@@ -21,8 +21,10 @@ class View {
 
         extract($parameters);
 
-        // ob_start();
-        include (__DIR__.'/../../resources/views/'.$view.'.php');
-        // echo ob_get_clean();
+        if(file_exists(__DIR__.'/../../resources/views/'.$view.'.php')){
+            include (__DIR__.'/../../resources/views/'.$view.'.php');
+        } else {
+            include (__DIR__.'/../../resources/views/error_pages/404.php');
+        }
     }
 }

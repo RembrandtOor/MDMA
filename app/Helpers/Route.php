@@ -79,13 +79,17 @@ class Route {
     public static function handle(string $method, array $request) {
         self::registerRoutes();
         $route = $request['route'] ?? $_SERVER['REQUEST_URI']; 
+        $route = str_replace(dirname($_SERVER['PHP_SELF']), '/', $route);
 
         $route_rep = preg_replace('/\/[1-9]/', '/{.*}', $route);
         $route_rep = '/'.preg_replace('/\//', '\/', $route_rep).'/';
 
         $find_routes = preg_grep($route_rep, array_keys(self::$routes[$method]));
-        var_dump($route);
         if(count($find_routes) > 0) {
+            if(!isset(self::$routes[$method][$route])){
+                return view('error_pages.404');
+            }
+
             $findroute = self::$routes[$method][$route];
             if($findroute == null) {
                 $route_url = array_values($find_routes)[0];
@@ -95,8 +99,7 @@ class Route {
             // var_dump($matches);
 
             if(isset($findroute['view'])) {
-                echo View::render($findroute['view']);
-                return true;
+                return view($findroute['view']);
             }
 
             if(is_callable($findroute['action'])) {
@@ -121,7 +124,7 @@ class Route {
             }
             echo 'CANNOT FIND CONTROLLER?';
         }
-        echo '404 NOT FOUND';
+        return view('error_pages.404');
     }
 
     /**
