@@ -134,3 +134,6 @@ class Route {
         require_once __DIR__.'/../../routes.php';
     }
 }
+
+var_dump($route);
+var_dump($route_rep);
