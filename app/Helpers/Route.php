@@ -80,6 +80,7 @@ class Route {
         self::registerRoutes();
         $route = $request['route'] ?? $_SERVER['REQUEST_URI']; 
         $route = str_replace(dirname($_SERVER['PHP_SELF']), '/', $route);
+        $route = str_replace('//', '/', $route);
 
         $route_rep = preg_replace('/\/[1-9]/', '/{.*}', $route);
         $route_rep = '/'.preg_replace('/\//', '\/', $route_rep).'/';
@@ -134,6 +135,3 @@ class Route {
         require_once __DIR__.'/../../routes.php';
     }
 }
-
-var_dump($route);
-var_dump($route_rep);
