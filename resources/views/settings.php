@@ -42,6 +42,14 @@
             <input type="checkbox" id="setting5" name="setting5" checked>
             <label for="setting5">Setting 5<br>Explanation setting 5</label>
         </div>
+
+        <br>
+
+        <div>
+            <form action="" method="post">
+            <input type="submit" id="deleteAccount" name="DeleteUser" value="Delete Account">
+            </form>
+        </div>
     </div>
 </body>
 
