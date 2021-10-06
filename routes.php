@@ -6,6 +6,7 @@ use App\Controllers\SongController;
 use App\Controllers\PlaylistController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\RegisterController;
+use App\Helpers\Auth;
 
 
 // Route::get('/index', [
@@ -34,13 +35,22 @@ Route::get('/login', [
     LoginController::class, 'index'
 ])->name('login');
 
+Route::post('/login', [
+    LoginController::class, 'login'
+]);
+
+Route::get('/logout', function() {
+    Auth::logout();
+    return redirect(route('index'));
+})->name('logout');
+
 Route::get('/playlists', [
     PlaylistController::class, 'index'
 ])->name('playlists');
 
-Route::get('/playlist/{id}', [
-    PlaylistController::class, 'show'
-])->name('playlist');
+// Route::get('/playlist/{id}', [
+//     PlaylistController::class, 'show'
+// ])->name('playlist');
 
 Route::get('/playlist', [
     PlaylistController::class, 'show'

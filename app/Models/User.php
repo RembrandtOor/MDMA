@@ -1,7 +1,11 @@
 <?php
 namespace App\Models;
 
+use App\Helpers\Traits\Authenticatable;
+
 class User extends Model {
+    use Authenticatable;
+    
     protected $hidden = [
         'password'
     ];

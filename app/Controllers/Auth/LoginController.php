@@ -1,23 +1,39 @@
 <?php
 namespace App\Controllers\Auth;
 
+use App\Helpers\Request;
+use App\Helpers\Auth;
 use App\Models\User;
 
 class LoginController {
-    
-    private $userName;
-    private $password;
+    public function login(Request $request) {
+        $user = User::firstWhere('username', $request->username);
+        if($user == null) {
+            return response()->json([
+                'success' => false, 
+                'error' => 'No user with this username found'
+            ]);
+        }
 
-    public function login($request) {
+        if(!$user->passwordMatch($request->password)) {
+            return response()->json([
+                'success' => false, 
+                'error' => 'Passwords do not match'
+            ]);
+        }
 
-        $this->username = $request->username;
-        $this->password = $request->password;
+        Auth::login($user);
 
-        $user = User::where("username", $this->username)->get();
-        $password = User::where("password", $this->password)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'Logged in successfully'
+        ]);
     }
         
     public function index() {
+        if(Auth::check()) {
+            return redirect('playlists');
+        }
         return view('login');
     }
 }

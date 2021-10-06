@@ -1,19 +1,11 @@
-// const app = document.querySelector('#app');
+const registerForm = document.querySelector('#register-form');
+const loginForm = document.querySelector('#login-form');
 
-// function addLinks() {
-//     const hrefs = document.querySelectorAll('a');
-//     console.log(hrefs);
-//     hrefs.forEach((a) => {
-//         a.addEventListener('click', async (e) => {
-//             e.preventDefault();
+loginForm?.addEventListener('submit', async (e) => {
+	e.preventDefault();
 
-//             if(a.href != null) {
-//                 const res = await fetch(a.href);
-//                 const data = await res.text()
-//                 app.innerHTML = data
-//             }
-//         })
-//     })
-// }
-
-// addLinks();
+	const res = await fetch('/login', {
+		method: 'POST',
+		body: new FormData(loginForm),
+	});
+});

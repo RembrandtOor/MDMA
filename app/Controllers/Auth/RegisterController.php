@@ -1,9 +1,9 @@
 <?php
 namespace App\Controllers\Auth;
 
-use App\Models\User;
 use App\Helpers\Request;
 use App\Helpers\Auth;
+use App\Models\User;
 
 class RegisterController {
     public function register(Request $request) {
@@ -50,6 +50,9 @@ class RegisterController {
     }
         
     public function index() {
+        if(Auth::check()) {
+            return redirect('playlists');
+        }
         return view('register');
     }
 }

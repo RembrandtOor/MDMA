@@ -3,6 +3,7 @@
 
 use App\Helpers\View;
 use App\Helpers\Route;
+use App\Helpers\Auth;
 
 /**
  * Returns view file and adds parameters as variables
@@ -29,13 +30,18 @@ function route(string $route_name, array $parameters = []) {
     $url .= dirname($_SERVER['PHP_SELF']);
 
     if(isset($_REQUEST['route'])) {
-        $url .= "/?route=";
+        $url .= '/?route=';
     }
 
     $url .= substr($route_name, 1);
 
     foreach($parameters as $key => $value){
-        $url .= "&$key=$value";
+        if($key == array_key_first($parameters)) {
+            $url .= '?';
+        } else {
+            $url .= '&';
+        }
+        $url .= "$key=$value";
     }
     return $url;
 }
