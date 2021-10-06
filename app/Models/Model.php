@@ -8,6 +8,7 @@ class Model {
     private static $database;
     private static $tableName;
     private static $values = [];
+    public $data = [];
 
     /**
      *  Create the model, set given parameters as variables;
@@ -16,6 +17,9 @@ class Model {
     private function __construct(array $data = []) {
         foreach($data as $key => $value) {
             $this->$key = $value;
+            if(isset($this->hidden) && !in_array($key, $this->hidden)) {
+                $this->data[$key] = $value;
+            }
         }
     }
 
@@ -40,7 +44,7 @@ class Model {
         $models = [];
         $rows = self::$database->read('SELECT * FROM '.self::$tableName);
         foreach($rows as $row) {
-            $models[] = new static($row);
+            $models[] = self::return($row);
         }
         return $models;
     }
@@ -63,8 +67,10 @@ class Model {
         $model = null;
         $search = self::$database->readOne(self::$query, [':id' => intval($id)]);
         if($search != null) {
-            $model = new static($search);
+            $model = self::return($search);
         }
+
+        self::$query = '';
 
         return $model;
     }
@@ -132,7 +138,10 @@ class Model {
      */
     public static function first(string $column = 'id') {
         self::__constructStatic();
-        return new static(self::$database->readOne(self::$query, self::$values));
+        self::$query .= " ORDER BY `$column` ASC LIMIT 1";
+        $model = self::return(self::$database->readOne(self::$query, self::$values));
+        self::$query = '';
+        return $model;
     }
 
     /**
@@ -149,13 +158,11 @@ class Model {
     public static function orderBy(string $column) {
         self::$query .= "ORDER BY `$column` ASC";
         return new self;
-        // return new static(self::$database->readOne(self::$query));
     }
 
     public static function orderByDesc(string $column) {
         self::$query .= "ORDER BY `$column` DESC";
         return new self;
-        // return new static(self::$database->readOne(self::$query));
     }
 
     /**
@@ -167,14 +174,16 @@ class Model {
         $models = [];
         $rows = self::$database->read(self::$query, self::$values);
         foreach($rows as $row) {
-            $models[] = new static($row);
+            $models[] = self::return($row);
         }
+        self::$query = '';
         return $models;
     }
 
     public static function getJSON() {
         self::__constructStatic();
         $rows = self::$database->read(self::$query, self::$values);
+        self::$query = '';
         return json_encode($rows);
     }
 
@@ -183,7 +192,7 @@ class Model {
 
         $query = 'INSERT INTO '.self::$tableName. ' (';
             foreach($values as $key => $value) {
-                $query .= '`'.$key.'`';
+                $query .= "`$key`";
                 if($key != array_key_last($values)) {
                     $query .= ', ';
                 }
@@ -204,6 +213,15 @@ class Model {
 
         $id = self::$database->create($query, $values);
 
+        self::$query = '';
+
         return self::find($id);
+    }
+
+    private static function return($model) {
+        if($model == null) {
+            return null;
+        }
+        return new static($model);
     }
 }

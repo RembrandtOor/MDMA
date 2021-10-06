@@ -27,6 +27,7 @@ class RegisterController {
                 'error' => 'Username must be between 3 and 40 characters'
             ]);
         }
+
         if(strlen($request->password) < 5) {
             return response()->json([
                 'success' => false,
@@ -34,7 +35,18 @@ class RegisterController {
             ]);
         }
 
-        
+        $user = User::create([
+            'name' => $request->first_name,
+            'username' => $request->username,
+            'password' => password_hash($request->password, PASSWORD_BCRYPT),
+        ]);
+
+        Auth::login($user); 
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Registered successfully'
+        ]);
     }
         
     public function index() {

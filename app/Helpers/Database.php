@@ -31,7 +31,7 @@ class Database {
         return $prepared->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function readOne(string $query, array $parameters = []) {
+    public function readOne(string $query, array $parameters = []): ?array {
         $conn = $this->construct();
         
         try {
@@ -45,6 +45,9 @@ class Database {
             echo '<br>';
             echo $e->getMessage();
             echo '<br><br>';
+        }
+        if($prepared->rowCount() == 0) {
+            return null;
         }
         return $prepared->fetch(\PDO::FETCH_ASSOC);
     }
