@@ -6,50 +6,29 @@
 .playlist-info {
   max-width: 90%;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   gap: 1rem;
   margin-bottom: 1rem;
 }
-
 .playlist-info .playlist-img {
   width: 6rem;
   height: 6rem;
   background: grey;
   border-radius: 5px;
 }
-
 .playlist-info .playlist-details {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
-
 .playlist-info .playlist-details .playlist-name {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   font-size: 28px;
 }
-
 .playlist-info .playlist-details .playlist-by {
-  -webkit-box-flex: 0;
-  -ms-flex-positive: 0;
   flex-grow: 0;
 }
 
@@ -62,85 +41,52 @@
 
 .search-bar {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
-
 .search-bar input {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   background: rgba(255, 255, 255, 0.15);
 }
-
 .search-bar .add-song-btn img {
   width: 2rem;
 }
 
 .songs-list {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   gap: 0.5rem;
 }
-
 .songs-list .song {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
-
 .songs-list .song > * {
   padding: 0.2rem 0.4rem;
 }
-
 .songs-list .song .song-img {
   height: 3rem;
   width: 3rem;
   border-radius: 5px;
 }
-
 .songs-list .song .song-details {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
-
 .songs-list .song .song-details .song-name {
   font-size: 20px;
 }
-
 .songs-list .song .song-details .song-author {
   font-size: 16px;
 }
-
 .songs-list .song .song-buttons .star-btn img {
   height: 2rem;
   width: 2rem;
 }
-
-/*# sourceMappingURL=playlist.css.map */
 
 /*# sourceMappingURL=playlist.css.map */

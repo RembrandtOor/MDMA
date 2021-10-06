@@ -1,6 +1,3 @@
-const registerForm = document.querySelector('#register-form');
-const loginForm = document.querySelector('#login-form');
-
 const Toast = Swal.mixin({
 	toast: true,
 	position: 'top-end',
@@ -12,6 +9,8 @@ const Toast = Swal.mixin({
 	// 	toast.addEventListener('mouseleave', Swal.resumeTimer);
 	// },
 });
+
+const registerForm = document.querySelector('#register-form');
 
 registerForm?.addEventListener('submit', async (e) => {
 	e.preventDefault();
@@ -44,6 +43,8 @@ registerForm?.addEventListener('submit', async (e) => {
 	}
 });
 
+const loginForm = document.querySelector('#login-form');
+
 loginForm?.addEventListener('submit', async (e) => {
 	e.preventDefault();
 
@@ -60,6 +61,47 @@ loginForm?.addEventListener('submit', async (e) => {
 			});
 			setTimeout(() => {
 				location.reload();
+			}, 2000);
+		} else {
+			Toast.fire({
+				icon: 'error',
+				title: json.error,
+			});
+		}
+	} else {
+		Toast.fire({
+			icon: 'error',
+			title: 'Something went wrong!',
+		});
+	}
+});
+
+const createPlaylistBtn = document.querySelector('#create-playlist');
+
+console.log(createPlaylistBtn);
+console.log('hi');
+
+createPlaylistBtn?.addEventListener('click', async (e) => {
+	e.preventDefault();
+
+	const res = await fetch('/api/playlist/create', {
+		method: 'POST',
+		// body: JSON.stringify({
+
+		// }),
+		// headers: {
+		// 	'Content-Type': 'application/json'
+		// }
+	});
+	if (res.ok) {
+		const json = await res.json();
+		if (json.success && json.success == true) {
+			Toast.fire({
+				icon: 'success',
+				title: json.message,
+			});
+			setTimeout(() => {
+				window.location.href = json.playlist_url;
 			}, 2000);
 		} else {
 			Toast.fire({

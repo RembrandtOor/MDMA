@@ -82,3 +82,10 @@ Route::get('/api/groups', [
 Route::get('/group', [
     GroupController::class, 'show'
 ])->name('group');
+Route::post('/api/playlist/create', [
+    PlaylistController::class, 'create'
+]);
+
+Route::post('/api/playlist/update', [
+    PlaylistController::class, 'update'
+]);

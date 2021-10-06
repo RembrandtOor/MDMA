@@ -10,6 +10,9 @@
     </head>
     <body>
         <div class="container">
+            <div style="margin-bottom: 10px;">
+                <a href="<?= route('playlists') ?>" class="btn btn-primary"><- Go back</a>
+            </div>
             <div class="playlist-info">
                 <img class="playlist-img" src="img/Compilation.jpg">
                 <div class="playlist-details">

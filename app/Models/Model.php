@@ -14,7 +14,7 @@ class Model {
      *  Create the model, set given parameters as variables;
      * @param array $data
      */
-    private function __construct(array $data = []) {
+    public function __construct(array $data = []) {
         foreach($data as $key => $value) {
             $this->$key = $value;
             if(isset($this->hidden) && !in_array($key, $this->hidden)) {
@@ -151,8 +151,12 @@ class Model {
      */
     public static function last(string $column = 'id') {
         self::__constructStatic();
-        self::orderByDesc($column);
-        return self::limit(1);
+        self::$query .= " ORDER BY `$column` DESC LIMIT 1";
+        $model = self::return(self::$database->readOne(self::$query, self::$values));
+        self::$query = '';
+        return $model;
+        // self::orderByDesc($column);
+        // return self::limit(1);
     }
 
     public static function orderBy(string $column) {
@@ -218,10 +222,15 @@ class Model {
         return self::find($id);
     }
 
+    public static function count(string $column = '*') {
+        self::__constructStatic();
+        self::$query = str_replace('*', "COUNT($column) as count", self::$query);
+        $count = self::$database->readOne(self::$query, self::$values)['count'];
+        self::$query = '';
+        return $count;
+    }
+
     private static function return($model) {
-        if($model == null) {
-            return null;
-        }
-        return new static($model);
+        return $model ? new static($model) : null;
     }
 }

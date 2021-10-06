@@ -16,7 +16,7 @@
   font-size: 1rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -31,6 +31,16 @@
 }
 .btn.btn-block {
   width: 100%;
+}
+.btn.btn-circle {
+  border-radius: 50%;
+  padding: 15px;
+}
+.btn.btn-transparent {
+  background: transparent;
+}
+.btn.btn-transparent:hover {
+  background: transparent;
 }
 
 .bg-primary {
@@ -52,15 +62,15 @@
 }
 
 .bg-secondary {
-  background: #E86A4D;
+  background: #e86a4d;
 }
 
 .text-secondary {
-  color: #E86A4D;
+  color: #e86a4d;
 }
 
 .btn-secondary {
-  background: #E86A4D;
+  background: #e86a4d;
 }
 .btn-secondary:hover {
   background: #eb7d64;
@@ -70,15 +80,15 @@
 }
 
 .bg-red {
-  background: #B82F4D;
+  background: #b82f4d;
 }
 
 .text-red {
-  color: #B82F4D;
+  color: #b82f4d;
 }
 
 .btn-red {
-  background: #B82F4D;
+  background: #b82f4d;
 }
 .btn-red:hover {
   background: #cb3556;
@@ -87,9 +97,10 @@
   background: #8f253c;
 }
 
-html, body {
+html,
+body {
   background: #160220;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "Glory";
   margin: 0;
   scroll-behavior: smooth;
@@ -153,16 +164,18 @@ input {
   font-size: 16px;
   padding: 0.75rem 1.25rem;
   margin-bottom: 0.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 2px;
 }
 input::placeholder {
-  color: #FFFFFF;
+  color: #ffffff;
   opacity: 0.7;
   text-transform: capitalize;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 

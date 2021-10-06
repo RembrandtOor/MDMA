@@ -1,7 +1,13 @@
 <?php
 namespace App\Helpers;
 
+use App\Models\User;
+
 class Auth {
+    public static function user(){
+        return new User($_SESSION);
+    }
+
     public static function login($user): bool {
         if($user == null) {
             return false;
