@@ -7,7 +7,7 @@ class Model {
     private static $query;
     private static $database;
     private static $tableName;
-    private static array $values = [];
+    private static $values = [];
 
     /**
      *  Create the model, set given parameters as variables;
