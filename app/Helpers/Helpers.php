@@ -3,6 +3,7 @@
 
 use App\Helpers\View;
 use App\Helpers\Route;
+use App\Helpers\Auth;
 
 /**
  * Returns view file and adds parameters as variables
