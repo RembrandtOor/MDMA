@@ -1,8 +1,6 @@
 <?php
 namespace App\Models;
 
-use App\Models\User;
-
 class Playlist extends Model {
     public function getId() {
         return $this->id;
@@ -19,5 +17,9 @@ class Playlist extends Model {
     public function getCreator() {
         // return $this->created_by;
         return 'daniel';
+    }
+
+    public function getUrl() {
+        return route('playlist', ['id' => $this->getId()]);
     }
 }

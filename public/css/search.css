@@ -1,10 +1,58 @@
-.logo {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+nav {
+  background-color: #580980;
+  height: 60px;
+  width: 100%;
+  margin-bottom: 60px;
 }
 
+a.logo {
+  position: absolute;
+  font-size: 35px;
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 200;
+  font-size: 2.5rem;
+  max-width: 90vh;
+  margin: 1rem auto;
+}
+
+.box {
+  max-width: 90%;
+  height: 15px;
+  margin: 0 auto;
+  background-color: #580980;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.box > i {
+  font-size: 25px;
+  color: white;
+}
+
+.box > input {
+  width: 100%;
+  flex: 1;
+  background-color: #580980;
+  color: white;
+  height: 15px;
+  border: none;
+  outline: none;
+  font-size: 25px;
+  padding-left: 10px;
+}
+
+@media (max-width: 600px) {
+  .nav, .box {
+    float: none;
+  }
+}
 .content {
   width: 100vd;
   height: 100vh;
@@ -17,7 +65,7 @@
 h1 {
   text-align: center;
   font-weight: 200;
-  font-size: 2.5rem;
+  font-size: 35px;
   max-width: 90vh;
   margin: 1rem auto;
 }
@@ -38,7 +86,7 @@ h1 {
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px;
+  padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
@@ -56,21 +104,6 @@ h1 {
 .container {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.search-bar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-.search-bar input {
-  flex-grow: 1;
-  background: rgba(255, 255, 255, 0.15);
-}
-.search-bar .add-playlist-btn img {
-  width: 2rem;
 }
 
 .splitter {
@@ -121,4 +154,4 @@ h1 {
   }
 }
 
-/*# sourceMappingURL=playlists.css.map */
+/*# sourceMappingURL=search.css.map */

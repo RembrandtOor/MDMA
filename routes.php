@@ -63,3 +63,11 @@ Route::get('/songs', [
 Route::get('/api/playlists', [
     PlaylistController::class, 'getList'
 ]);
+
+Route::post('/api/playlist/create', [
+    PlaylistController::class, 'create'
+]);
+
+Route::post('/api/playlist/update', [
+    PlaylistController::class, 'update'
+]);

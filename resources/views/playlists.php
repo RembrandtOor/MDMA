@@ -15,15 +15,15 @@
             <div class="content">
                 <div class="logo">MDMA</div>
                 <h1>You have no &#160;<span class="text-secondary">playlists &#160;</span> yet!</h1>
-                <a href="<?= route('login') ?>" class="btn btn-primary btn-xS">+ CREATE PLAYLIST</a>
+                <button id="create-playlist" class="btn btn-primary btn-xS">+ CREATE PLAYLIST</button>
             </div>
         <?php else: ?>
             <div class="container">
                 <div class="search-bar">
                     <input type="text class="search-input" placeholder="Search">
-                    <a class="add-playlist-btn" href="#">
+                    <button id="create-playlist" class="btn btn-circle btn-transparent add-playlist-btn">
                         <img src="img/plus-2.png">
-                    </a>
+                    </button>
                 </div>
 
                 <h1 class="text-center">Playlists</h1>
@@ -34,7 +34,7 @@
                         <div class="playlist">
                             <img class="playlist-img" src="<?= $playlist->getIconUrl() ?>">
                             <div class="playlist-details">
-                                <a class="playlist-name" href="<?= route('playlist', ['id' => $playlist->getId()]); ?>"><?= $playlist->getName() ?></a>
+                                <a class="playlist-name" href="<?= $playlist->getUrl(); ?>"><?= $playlist->getName() ?></a>
                                 <!-- <div class="playlist-author">Group name</div> -->
                             </div>
                             <div class="playlist-buttons">
@@ -50,5 +50,8 @@
                 </div>
             </div>
         <?php endif ?>
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>
