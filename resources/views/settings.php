@@ -73,6 +73,16 @@
             <a href="#" class="btn btn-primary btn-xS">Confirm</a>
         </div>
 
+<<<<<<< HEAD
+=======
+        <br>
+
+        <div>
+            <form action="" method="post">
+            <input type="submit" id="deleteAccount" name="DeleteUser" value="Delete Account">
+            </form>
+        </div>
+>>>>>>> 070dfc9e7dad88c8f97934f796f237fd4985a728
     </div>
 </body>
 
