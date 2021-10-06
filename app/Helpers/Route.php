@@ -84,6 +84,9 @@ class Route {
         $route_rep = preg_replace('/\/[1-9]/', '/{.*}', $route);
         $route_rep = '/'.preg_replace('/\//', '\/', $route_rep).'/';
 
+        var_dump($route);
+        var_dump($route_rep);
+
         $find_routes = preg_grep($route_rep, array_keys(self::$routes[$method]));
         if(count($find_routes) > 0) {
             if(!isset(self::$routes[$method][$route])){
@@ -135,5 +138,3 @@ class Route {
     }
 }
 
-var_dump($route);
-var_dump($route_rep);
