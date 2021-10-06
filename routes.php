@@ -7,6 +7,8 @@ use App\Controllers\PlaylistController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\RegisterController;
 use App\Helpers\Auth;
+use App\Controllers\GroupController;
+
 
 
 // Route::get('/index', [
@@ -21,6 +23,10 @@ Route::view('/settings', 'settings')->name('settings');
 Route::view('/addsong', 'addsong')->name('addsong');
 Route::view('/logout', 'logout')->name('logout');
 Route::view('/search', 'search')->name('search');
+Route::view('/groups', 'groups')->name('groups');
+Route::view('/group', 'group')->name('group');
+
+
 
 
 Route::get('/register', [
@@ -63,3 +69,16 @@ Route::get('/songs', [
 Route::get('/api/playlists', [
     PlaylistController::class, 'getList'
 ]);
+
+Route::get('/groups', [
+    GroupController::class, 'index'
+])->name('groups');
+
+Route::get('/api/groups', [
+    GroupController::class, 'getList'
+]);
+
+
+Route::get('/group', [
+    GroupController::class, 'show'
+])->name('group');
