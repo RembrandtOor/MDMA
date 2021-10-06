@@ -19,6 +19,8 @@ Route::view('/playlist', 'playlist')->name('playlist');
 Route::view('/settings', 'settings')->name('settings');
 Route::view('/addsong', 'addsong')->name('addsong');
 Route::view('/logout', 'logout')->name('logout');
+Route::view('/search', 'search')->name('search');
+
 
 Route::get('/register', [
     RegisterController::class, 'index'

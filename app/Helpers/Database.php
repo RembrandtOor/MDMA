@@ -11,7 +11,7 @@ class Database {
             $pdo = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
             // $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
         } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage());
+            // throw new \PDOException($e->getMessage());
         }
 
         return $pdo;
