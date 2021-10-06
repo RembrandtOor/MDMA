@@ -38,9 +38,9 @@ Route::get('/playlists', [
     PlaylistController::class, 'index'
 ])->name('playlists');
 
-// Route::get('/playlist/{id}', [
-//     PlaylistController::class, 'show'
-// ])->name('playlist');
+Route::get('/playlist/{id}', [
+    PlaylistController::class, 'show'
+])->name('playlist');
 
 Route::get('/playlist', [
     PlaylistController::class, 'show'

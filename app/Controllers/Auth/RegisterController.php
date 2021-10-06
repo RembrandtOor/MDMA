@@ -6,6 +6,7 @@ use App\Helpers\Request;
 
 class RegisterController {
     public function register(Request $request) {
+        // not working atm, working on fixing.
         if(User::firstWhere('username', $request->username)() != null) {
             return response()->json([
                 'success' => false, 

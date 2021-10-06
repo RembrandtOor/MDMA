@@ -10,7 +10,6 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 
 use App\Helpers\Route;
-
 // function handleRequest($method, $request) {
 //     Route::handle($method, $request);
 // }
