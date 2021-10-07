@@ -1,5 +1,11 @@
 <?php
 
+if (isset($_POST)) {
+    $file = $_POST['songfile'];
+    $songname = $_POST['songname'];
+    $artist = $_POST['artist'];
+}
+
 class Addsong {
     
     public $file;
@@ -38,6 +44,8 @@ class Addsong {
         }
     
     }
-}   
+}
+
+$song = new Addsong($file, $songname, $artist);
 
 ?>
