@@ -26,9 +26,6 @@ Route::view('/search', 'search')->name('search');
 Route::view('/groups', 'groups')->name('groups');
 Route::view('/group', 'group')->name('group');
 
-
-
-
 Route::get('/register', [
     RegisterController::class, 'index'
 ])->name('register');

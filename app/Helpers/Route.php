@@ -84,7 +84,8 @@ class Route {
         // var_dump(dirname($_SERVER['PHP_SELF']));
         // echo "SECOND STEP: ".$route.'<br><br>';
         $route = str_replace('//', '/', $route);
-        // echo "THIRD STEP: ".$route.'<br><br>';
+        // echo "THIRD STEP: ".$route.'<br><br>';\
+        if(strlen($route) == 0) $route = '/';
 
         $route_rep = preg_replace('/\/[1-9]/', '/{.*}', $route);
         $route_rep = '/'.preg_replace('/\//', '\/', $route_rep).'/';
