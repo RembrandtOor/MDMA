@@ -20,9 +20,11 @@ function view(string $view_name, array $parameters = []) {
  * @return string
  */
 function route(string $route_name, array $parameters = []) {
+    $found = false;
     foreach(Route::$routes[$_SERVER['REQUEST_METHOD']] as $route => $values){
         if($values['name'] == $route_name){
             $route_name = $route;
+            $found = true;
         }
     }
     $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
@@ -33,7 +35,11 @@ function route(string $route_name, array $parameters = []) {
         $url .= '/?route=';
     }
 
-    $url .= substr($route_name, 1);
+    if($found)  {
+        $url .= substr($route_name, 1);
+    } else {
+        $url .= $route_name;
+    }
 
     foreach($parameters as $key => $value){
         if($key == array_key_first($parameters)) {

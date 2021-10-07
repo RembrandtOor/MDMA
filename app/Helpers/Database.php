@@ -2,25 +2,24 @@
 namespace App\Helpers;
 
 class Database {
-    public function __construct($host = '127.0.0.1:3306', $database = 'mdma', $username = 'root', $password = 'password', $type = 'mysql') {
-        $this->conn = $this->construct($_ENV['DB_HOST'] ?? $host, $_ENV['DB_NAME'] ?? $database, $_ENV['DB_USERNAME'] ?? $username, $_ENV['DB_PASSWORD'] ?? $password, $type);
-    }
+    private $conn;
 
-    private function construct(string $host = '127.0.0.1:3306', string $database = 'mdma', string $username = 'root', string $password = 'password', string $type = 'mysql') {
+    public function __construct() {
+        $host = $_ENV['DB_HOST'] ?? '127.0.0.1:3306';
+        $database = $_ENV['DB_NAME'] ?? 'mdma';
+        $username = $_ENV['DB_USERNAME'] ?? 'root';
+        $password = $_ENV['DB_PASSWORD'] ?? 'mdma';
+        $type = $_ENV['DB_TYPE'] ?? 'mysql';
         try {
-            $pdo = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
+            $this->conn = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage());
         }
-
-        return $pdo;
     }
 
-    public function read(string $query, array $parameters = []) {
-        $conn = $this->construct();
-        
+    public function read(string $query, array $parameters = []) {        
         try {
-            $prepared = $conn->prepare($query);
+            $prepared = $this->conn->prepare($query);
             $prepared->execute($parameters);
         } catch (\PDOException $e) {
             echo 'Something wrong with a query<br>';
@@ -31,11 +30,9 @@ class Database {
         return $prepared->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function readOne(string $query, array $parameters = []): ?array {
-        $conn = $this->construct();
-        
+    public function readOne(string $query, array $parameters = []): ?array {        
         try {
-            $prepared = $conn->prepare($query);
+            $prepared = $this->conn->prepare($query);
             $prepared->execute($parameters);
         } catch (\PDOException $e) {
             echo 'Something wrong with a query<br><br>';
@@ -53,12 +50,12 @@ class Database {
     }
 
     public function create(string $query, array $parameters = []) {
-        $conn = $this->construct();
+        // $this->conn = $this->construct();
         
         try {
-            $prepared = $conn->prepare($query);
+            $prepared = $this->conn->prepare($query);
             $prepared->execute($parameters);
-            return $conn->lastInsertId();
+            return $this->conn->lastInsertId();
         } catch (\PDOException $e) {
             echo 'Something wrong with a query<br>';
             echo $e->getMessage();

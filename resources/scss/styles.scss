@@ -1,150 +1,169 @@
-@use "sass:map";
+@use 'sass:map';
 
 @font-face {
-    font-family: 'Glory';
-    src: url(../fonts/Glory-VariableFont_wght.ttf);
+	font-family: 'Glory';
+	src: url(../fonts/Glory-VariableFont_wght.ttf);
 }
 
 @font-face {
-    font-family: 'A4 SPEED';
-    src: url(../fonts/A4SPEED-Bold.ttf);
+	font-family: 'A4 SPEED';
+	src: url(../fonts/A4SPEED-Bold.ttf);
 }
 
 .btn {
-    width: auto;
-    border-radius: 100px;
-    display: inline-flex;
-    padding: 15px 30px;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #FFFFFF;
-    border: none;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+	width: auto;
+	border-radius: 100px;
+	display: inline-flex;
+	padding: 15px 30px;
+	align-items: center;
+	justify-content: center;
+	font-size: 1rem;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #ffffff;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 
-    &.btn-lg {
-        padding: 20px 40px;
-        font-size: 1.25rem;
-    }
+	&.btn-lg {
+		padding: 20px 40px;
+		font-size: 1.25rem;
+	}
 
-    &.btn-xl {
-        padding: 20px 38px;
-        font-size: 1.5rem;
-    }
+	&.btn-xl {
+		padding: 20px 38px;
+		font-size: 1.5rem;
+	}
 
-    &.btn-block {
-        width: 100%;
-    }
+	&.btn-block {
+		width: 100%;
+	}
+
+	&.btn-circle {
+		border-radius: 50%;
+		padding: 15px;
+	}
+
+	&.btn-transparent {
+		background: transparent;
+		&:hover {
+			background: transparent;
+		}
+	}
 }
 
-$colors: ("primary": #580980, "secondary": #E86A4D, "red": #B82F4D);
+$colors: (
+	'primary': #580980,
+	'secondary': #e86a4d,
+	'red': #b82f4d,
+);
 
 @each $name, $color in $colors {
-    .bg-#{$name} {
-        background: $color;
-    }
+	.bg-#{$name} {
+		background: $color;
+	}
 
-    .text-#{$name} {
-        color: $color;
-    }
+	.text-#{$name} {
+		color: $color;
+	}
 
-    .btn-#{$name} {
-        background: $color;
-        
-        &:hover {
-            background: lighten($color, 5%);
-        }
+	.btn-#{$name} {
+		background: $color;
 
-        &:active {
-            background: darken($color, 10%);
-        }
-    }
+		&:hover {
+			background: lighten($color, 5%);
+		}
+
+		&:active {
+			background: darken($color, 10%);
+		}
+	}
 }
 
-html, body {
-    background: #160220;
-    color: #FFFFFF;
-    font-family: 'Glory';
-    margin: 0;
-    scroll-behavior: smooth;
-    font-size: 16px;
-    width: 100%;
-    height: 100%;
+html,
+body {
+	background: #160220;
+	color: #ffffff;
+	font-family: 'Glory';
+	margin: 0;
+	scroll-behavior: smooth;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
 }
 
 nav {
-    .logo {
-        font-family: 'A4 SPEED';
-    }
+	.logo {
+		font-family: 'A4 SPEED';
+	}
 }
 
 .logo {
-    font-family: 'A4 SPEED';
-    font-size: 2.5rem;
+	font-family: 'A4 SPEED';
+	font-size: 2.5rem;
 }
 
 a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    max-width: 90%;
-    margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	max-width: 90%;
+	margin: 0 auto;
 }
 
 .flex-center {
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .h-100 {
-    height: 100%;
+	height: 100%;
 }
 
 .text-center {
-    text-align: center;
+	text-align: center;
 }
 
 .text-light {
-    font-weight: 200;
+	font-weight: 200;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: .1rem;
-    margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+	margin-bottom: 1rem;
 
-    label {
-        font-size: 22px;
-        margin-bottom: .5rem;
-    }
+	label {
+		font-size: 22px;
+		margin-bottom: 0.5rem;
+	}
 }
 
 input {
-    background: lighten(map.get($colors, 'primary'), 10%);
-    border: none;
-    font-size: 16px;
-    padding: .75rem 1.25rem;
-    margin-bottom: .2rem;
-    color: #FFFFFF;
-    border-radius: 2px;
+	background: lighten(map.get($colors, 'primary'), 10%);
+	border: none;
+	font-size: 16px;
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 0.2rem;
+	color: #ffffff;
+	border-radius: 2px;
 
-    &::placeholder {
-        color: #FFFFFF;
-        opacity: 0.7;
-        text-transform: capitalize;
-    }
+	&::placeholder {
+		color: #ffffff;
+		opacity: 0.7;
+		text-transform: capitalize;
+	}
 }
 
-input:focus, textarea:focus, select:focus{
-    outline: none;
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
 }
 
 // nav {
@@ -165,42 +184,40 @@ input:focus, textarea:focus, select:focus{
 // }
 
 nav {
-   display: none; 
-   > .nav-mobile {
-    
-   }
+	display: none;
+	> .nav-mobile {
+	}
 }
 
 @media (min-width: 768px) {
-
 }
 
 @media (min-width: 1024px) {
-    .btn {
-        font-size: 1.25rem;
+	.btn {
+		font-size: 1.25rem;
 
-        &.btn-lg {
-            font-size: 1.75rem;
-        }
+		&.btn-lg {
+			font-size: 1.75rem;
+		}
 
-        &.btn-xl {
-            padding: 1.5rem 3rem;
-            font-size: 2rem;
-        }
-    }
+		&.btn-xl {
+			padding: 1.5rem 3rem;
+			font-size: 2rem;
+		}
+	}
 }
 
 @media (min-width: 1200px) {
-    .btn {
-        font-size: 1.4rem;
+	.btn {
+		font-size: 1.4rem;
 
-        &.btn-lg {
-            font-size: 2.5rem;
-        }
+		&.btn-lg {
+			font-size: 2.5rem;
+		}
 
-        &.btn-xl {
-            padding: 1.25rem 3rem;
-            font-size: 2rem;
-        }
-    }
+		&.btn-xl {
+			padding: 1.25rem 3rem;
+			font-size: 2rem;
+		}
+	}
 }
