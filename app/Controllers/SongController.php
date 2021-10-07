@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Helpers\Request;
 use App\Models\Song;
 
 class SongController {    
@@ -8,5 +9,9 @@ class SongController {
         return view('songs', [
             'songs' => Song::all()
         ]);
+    }
+
+    public function create(Request $request) {
+        
     }
 }

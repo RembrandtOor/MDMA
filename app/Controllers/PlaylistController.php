@@ -12,9 +12,9 @@ class PlaylistController {
         ]);
     }
 
-    public function show(Request $request) {
-        if(!isset($request->id)) return redirect(route('playlists'));
-        $playlist = Playlist::find($request->id);
+    public function show(Request $request, $id) {
+        if(!isset($id)) return redirect(route('playlists'));
+        $playlist = Playlist::find($id);
         if(!$playlist) return redirect(route('playlists'));
         return view('playlist', [
             'playlist' => $playlist,
@@ -39,7 +39,6 @@ class PlaylistController {
             return response()->json([
                 'success' => true,
                 'message' => 'Playlist successfully created',
-                // 'playlist_id' => $playlist->getId(),
                 'playlist_url' => $playlist->getUrl()
             ]);
         }
@@ -48,6 +47,10 @@ class PlaylistController {
             'message' => 'Could not create a new playlist'
         ]);
     }
+
+    // public function addSong(Request $request) {
+
+    // }
 
     public function update(Request $request) {
 
