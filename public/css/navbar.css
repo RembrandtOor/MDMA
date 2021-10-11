@@ -1,0 +1,109 @@
+.bg-primary {
+  background: #580980;
+}
+
+.text-primary {
+  color: #580980;
+}
+
+.btn-primary {
+  background: #580980;
+}
+.btn-primary:hover {
+  background: #680b98;
+}
+.btn-primary:active {
+  background: #370650;
+}
+
+.bg-secondary {
+  background: #e86a4d;
+}
+
+.text-secondary {
+  color: #e86a4d;
+}
+
+.btn-secondary {
+  background: #e86a4d;
+}
+.btn-secondary:hover {
+  background: #eb7d64;
+}
+.btn-secondary:active {
+  background: #e24420;
+}
+
+.bg-red {
+  background: #b82f4d;
+}
+
+.text-red {
+  color: #b82f4d;
+}
+
+.btn-red {
+  background: #b82f4d;
+}
+.btn-red:hover {
+  background: #cb3556;
+}
+.btn-red:active {
+  background: #8f253c;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #580980;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+.navbar a:active {
+  background-color: #160220;
+  color: white;
+}
+.navbar a i {
+  font-size: 2rem;
+}
+
+#music-player {
+  width: 100%;
+  max-width: 100%;
+  height: 3rem;
+  position: fixed;
+  bottom: calc(2rem + (14px * 2));
+  background: #480768;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+#music-player #song-icon {
+  height: 3rem;
+  width: 3rem;
+  background: black;
+}
+
+@media (min-width: 1200px) {
+  .navbar {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=navbar.css.map */

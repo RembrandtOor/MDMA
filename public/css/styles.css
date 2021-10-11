@@ -179,9 +179,6 @@ select:focus {
   outline: none;
 }
 
-nav {
-  display: none;
-}
 @media (min-width: 1024px) {
   .btn {
     font-size: 1.25rem;

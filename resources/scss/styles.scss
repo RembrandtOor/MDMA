@@ -52,33 +52,7 @@
 	}
 }
 
-$colors: (
-	'primary': #580980,
-	'secondary': #e86a4d,
-	'red': #b82f4d,
-);
-
-@each $name, $color in $colors {
-	.bg-#{$name} {
-		background: $color;
-	}
-
-	.text-#{$name} {
-		color: $color;
-	}
-
-	.btn-#{$name} {
-		background: $color;
-
-		&:hover {
-			background: lighten($color, 5%);
-		}
-
-		&:active {
-			background: darken($color, 10%);
-		}
-	}
-}
+@import 'include/_colors';
 
 html,
 body {
@@ -182,12 +156,6 @@ select:focus {
 //         }
 //     }
 // }
-
-nav {
-	display: none;
-	> .nav-mobile {
-	}
-}
 
 @media (min-width: 768px) {
 }
