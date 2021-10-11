@@ -7,4 +7,13 @@
 <link rel="stylesheet" href="/css/navbar.css">
 <div id="music-player">
     <img id="song-icon" src="/img/images.jpeg">
+    <div id="song-info">
+        <div id="song-title">Macy</div>
+        <div id="song-album">album</div>
+    </div>
+    <div id="player-btns">
+        <button id="play-pause" class="btn btn-circle btn-transparent btn-icon">
+            <img src="img/icons/play.png" />
+        </button>
+    </div>
 </div>

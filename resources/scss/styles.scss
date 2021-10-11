@@ -50,6 +50,13 @@
 			background: transparent;
 		}
 	}
+
+	&.btn-icon {
+		img {
+			height: 100%;
+			width: 100%;
+		}
+	}
 }
 
 @import 'include/_colors';

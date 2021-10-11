@@ -5,7 +5,7 @@ use App\Helpers\Request;
 
 class Route {
     private static $current;
-    private static $routes = [
+    public static $routes = [
         'POST' => [],
         'GET' => []
     ];
@@ -74,6 +74,18 @@ class Route {
         self::$routes[self::$current['method']][self::$current['route']] = $data;
     }
 
+    public static function getRoute(string $route_name) {
+        foreach(self::$routes[$_SERVER['REQUEST_METHOD']] as $key => $values){
+            if($values['name'] == $route_name || $values['route'] == $route_name){
+                $route = $key;
+            }
+        }
+        if($route) {
+            return $route;
+        }
+        return null;
+    }
+
     public static function getCurrentRoute() {
         if(!isset(self::$currentRoute)){
             $route = $request['route'] ?? strtok($_SERVER['REQUEST_URI'], '?'); 
@@ -95,7 +107,7 @@ class Route {
     public static function getCurrentRouteRegex() {
         if(!isset(self::$currentRouteRegex)){
             $route = self::getCurrentRoute();
-            $regex = preg_replace('/\/[1-9]/', '/{.*}', $route);
+            $regex = preg_replace('/\/[1-9]+/', '/{.*}', $route);
             $regex = '/'.preg_replace('/\//', '\/', $regex).'/';
             self::$currentRouteRegex = $regex;
             return $regex;
@@ -103,8 +115,13 @@ class Route {
         return self::$currentRouteRegex;
     }
 
-    public static function getParameters() {
-        $route_esc = self::getCurrentRouteEscaped();
+    public static function getParameters($route_name = null) {
+        if($route_name) {
+        
+        } else {
+            $route_esc = self::getCurrentRouteEscaped();
+            dd($route_esc);
+        }
         $route = self::getCurrentRoute();
         $route_regex = self::getCurrentRouteRegex();
         $parameters = preg_match_all('/{(.*)}/', $route_esc, $matches, PREG_PATTERN_ORDER);
@@ -126,8 +143,11 @@ class Route {
     public static function getCurrentRouteData() {
         $route_regex = self::getCurrentRouteRegex();
         $find_routes = preg_grep($route_regex, array_keys(self::$routes[$_SERVER['REQUEST_METHOD']]));
-        $route_data = self::$routes[$_SERVER['REQUEST_METHOD']][$find_routes[array_key_first($find_routes)]];
-        return $route_data;
+        if(!empty($find_routes)) {
+            $route_data = self::$routes[$_SERVER['REQUEST_METHOD']][$find_routes[array_key_first($find_routes)]];
+            return $route_data;
+        }
+        return [];
     }
 
     /**
@@ -139,6 +159,7 @@ class Route {
         self::registerRoutes();
         
         $route_data = self::getCurrentRouteData();
+        // dd($route_data);
 
         if(empty($route_data)) {
             return view('error_pages.404');

@@ -42,6 +42,10 @@
 .btn.btn-transparent:hover {
   background: transparent;
 }
+.btn.btn-icon img {
+  height: 100%;
+  width: 100%;
+}
 
 .bg-primary {
   background: #580980;

@@ -191,7 +191,7 @@ class Model {
         return json_encode($rows);
     }
 
-    public static function create(array $values = []) {
+    public static function create(array $values) {
         self::__constructStatic();
 
         $query = 'INSERT INTO '.self::$tableName. ' (';
@@ -220,6 +220,29 @@ class Model {
         self::$query = '';
 
         return self::find($id);
+    }
+
+    public static function update(array $values) {
+        self::__constructStatic();
+
+        $query = 'UPDATE '.self::$tableName. ' SET ';
+            foreach($values as $key => $value) {
+                $query .= "`$key`=:$key";
+                if($key != array_key_last($values)) {
+                    $query .= ', ';
+                }
+            }
+        $query .= ' WHERE id = :id';
+
+        foreach($values as $key => $value) {
+            $values[':'.$key] = $value;
+            unset($values[$key]);
+        }
+        $values[':id'] = self::$values['id'];
+
+        $data = self::$database->update($query, $values);
+        self::$query = '';
+        return $data;
     }
 
     public static function count(string $column = '*') {

@@ -11,4 +11,8 @@ class Song extends Model {
     public function getArtist() {
         return $this->artist;
     }
+
+    public function getIconUrl() {
+        return asset('data/song_icons/'.$this->icon.'.png');
+    }
 }

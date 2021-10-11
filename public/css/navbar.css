@@ -75,7 +75,7 @@
   background: #f1f1f1;
   color: black;
 }
-.navbar a:active {
+.navbar a.active {
   background-color: #160220;
   color: white;
 }
@@ -99,10 +99,27 @@
   width: 3rem;
   background: black;
 }
+#music-player #song-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  overflow: hidden;
+  margin: 0 0.4rem;
+}
+#music-player #player-btns {
+  display: flex;
+  height: 100%;
+  margin-left: auto;
+  margin-right: 0.4rem;
+}
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
   .navbar {
     display: none;
+  }
+
+  #music-player {
+    bottom: 0;
   }
 }
 
