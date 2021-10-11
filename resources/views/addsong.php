@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container flex-center h-100">
-            <form method="POST" action="" class="login-container">
+            <form method="POST" action="./app/Models/Addsong.php" class="login-container">
                 <a href="<?= route('index'); ?>" class="logo text-center">MDMA</a>
                 <h1 class="text-center text-light">Upload song</h1>
 
