@@ -42,6 +42,10 @@
 .btn.btn-transparent:hover {
   background: transparent;
 }
+.btn.btn-icon img {
+  height: 100%;
+  width: 100%;
+}
 
 .bg-primary {
   background: #580980;
@@ -179,9 +183,6 @@ select:focus {
   outline: none;
 }
 
-nav {
-  display: none;
-}
 @media (min-width: 1024px) {
   .btn {
     font-size: 1.25rem;

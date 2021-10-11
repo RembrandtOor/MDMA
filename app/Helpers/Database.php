@@ -5,10 +5,12 @@ class Database {
     private $conn;
 
     public function __construct() {
-        $host = $_ENV['DB_HOST'] ?? '127.0.0.1:3306';
+        $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
+        $host .= ':';
+        $host .= $_ENV['DB_PORT'] ?? '3306';
         $database = $_ENV['DB_NAME'] ?? 'mdma';
         $username = $_ENV['DB_USERNAME'] ?? 'root';
-        $password = $_ENV['DB_PASSWORD'] ?? 'mdma';
+        $password = $_ENV['DB_PASSWORD'] ?? '';
         $type = $_ENV['DB_TYPE'] ?? 'mysql';
         try {
             $this->conn = new \PDO("{$type}:host={$host};dbname=$database", $username, $password);

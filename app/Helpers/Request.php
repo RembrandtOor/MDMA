@@ -4,10 +4,12 @@ namespace App\Helpers;
 class Request {
     private $data;
     
-    public function __construct() {
-        // $values = $_REQUEST;
-        $this->data = $_REQUEST;
+    public function __construct(array $values = []) {
         foreach($_REQUEST as $key => $value) {
+            $values[$key] = $value;
+        }
+        $this->data = $values;
+        foreach($values as $key => $value) {
             $this->$key = $this->cleanValue($value);
         }
     }

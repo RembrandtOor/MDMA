@@ -7,7 +7,7 @@ class Playlist extends Model {
     }
     
     public function getIconUrl() {
-        return $this->icon_url;
+        return asset('data/playlists/'.$this->icon.'.png');
     }
 
     public function getName() {

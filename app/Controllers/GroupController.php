@@ -11,12 +11,12 @@ class groupController {
         ]);
     }
 
-    public function show(Request $request) {
-        if(!isset($request->id)) {
+    public function show(Request $request, $id) {
+        if(!isset($id)) {
             return redirect(route('groups'));
         }
         return view('group', [
-            'group' => Group::find($request->id),
+            'group' => Group::find($id),
         ]);
     }
 

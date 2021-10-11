@@ -9,16 +9,12 @@ use App\Controllers\Auth\RegisterController;
 use App\Helpers\Auth;
 use App\Controllers\GroupController;
 
-
-
 // Route::get('/index', [
 //     IndexController::class, 'index'
 // ])->name('welcome');
 
 Route::view('/', 'welcome')->name('index');
 Route::view('/login', 'login')->name('login');
-Route::view('/playlists', 'playlists')->name('playlists');
-Route::view('/playlist', 'playlist')->name('playlist');
 Route::view('/settings', 'settings')->name('settings');
 Route::view('/addsong', 'addsong')->name('addsong');
 Route::view('/logout', 'logout')->name('logout');
@@ -47,17 +43,17 @@ Route::get('/logout', function() {
     return redirect(route('index'));
 })->name('logout');
 
-Route::get('/playlists', [
-    PlaylistController::class, 'index'
-])->name('playlists');
-
-// Route::get('/playlist/{id}', [
+// Route::get('/playlist', [
 //     PlaylistController::class, 'show'
 // ])->name('playlist');
 
-Route::get('/playlist', [
+Route::get('/playlist/{id}', [
     PlaylistController::class, 'show'
 ])->name('playlist');
+
+Route::get('/playlists', [
+    PlaylistController::class, 'index'
+])->name('playlists');
 
 Route::get('/songs', [
     SongController::class, 'index'
