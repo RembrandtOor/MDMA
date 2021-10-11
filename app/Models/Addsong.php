@@ -1,11 +1,5 @@
 <?php
 
-if (isset($_POST)) {
-    $file = $_POST['songfile'];
-    $songname = $_POST['songname'];
-    $artist = $_POST['artist'];
-}
-
 class Addsong {
     
     public $file;
