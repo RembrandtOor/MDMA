@@ -12,7 +12,7 @@
     <div class="lander">
         <div class="logo">MDMA</div>
         <h2>Welcome, start <a href="<?= route('playlists');?>" class="text-secondary">listening</a> right away.</h2>
-        <a href="<?= route('login') ?>" class="btn btn-primary btn-xl">Start now</a>
+        <a href="<?= route('/login') ?>" class="btn btn-primary btn-xl">Start now</a>
         <a href="#info" class="scroll-down">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 451.847 451.847;"
