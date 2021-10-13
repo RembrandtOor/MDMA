@@ -36,19 +36,31 @@ function route(string $route_name, array $parameters = []) {
         $url .= '/?route=';
     }
 
-    if($route)  {
-        $url .= substr($route_name, 1);
-    } else {
-        $url .= $route_name;
-    }
+    // $url .= $route_name;
+    // if($route)  {
+    //     $url .= substr($route, 1);
+    // } else {
+    //     $url .= $route_name;
+    // }
 
+
+    $useableParameters = Route::getRouteParameters($route);
+
+    if(count($useableParameters) > 0) {
+        $url .= substr(Route::setParameters($route, $parameters), 1);
+    } else {
+        $url .= substr($route, 1);
+    }
+    
     foreach($parameters as $key => $value){
-        if($key == array_key_first($parameters)) {
-            $url .= '?';
-        } else {
-            $url .= '&';
+        if(!in_array($key, $useableParameters)){
+            if($key == array_key_first($parameters)) {
+                $url .= '?';
+            } else {
+                $url .= '&';
+            }
+            $url .= "$key=$value";
         }
-        $url .= "$key=$value";
     }
     return $url;
 }
@@ -63,9 +75,17 @@ function redirect(string $url) {
 }
 
 class response {
+    public function __construct(int $status_code = 200) {
+        http_response_code($status_code);
+    }
+
     public function json(array $data) {
         header('Content-type: application/json');
         exit(json_encode($data));
+    }
+
+    public function view(string $view_name) {
+        exit(view($view_name));
     }
 }
 

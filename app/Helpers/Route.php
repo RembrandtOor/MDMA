@@ -10,7 +10,7 @@ class Route {
         'GET' => []
     ];
     private static $currentRoute;
-    private static $currentRouteRegex;
+    private static $currentData;
 
     /**
      * Add GET request route
@@ -19,8 +19,15 @@ class Route {
      * @return self
      */
     public static function get(string $route, $action) {
-        self::$routes['GET'][$route] = ['route' => $route, 'action' => $action, 'name' => ''];
-        self::$current = ['method' => 'GET', 'route' => $route, 'action' => $action, 'name' => ''];
+        $data = [
+            'method' => 'GET',
+            'route' => $route,
+            'action' => $action,
+            'name' => '',
+            'middleware' => self::$currentData['middleware'] ?? []
+        ];
+        self::$routes['GET'][$route] = $data;
+        self::$current = $data;
         return new self;
     }
 
@@ -31,8 +38,15 @@ class Route {
      * @return self
      */
     public static function post(string $route, $action) {
-        self::$routes['POST'][$route] = ['route' => $route, 'action' => $action, 'name' => ''];
-        self::$current = ['method' => 'POST', 'route' => $route, 'action' => $action, 'name' => ''];
+        $data = [
+            'method' => 'POST',
+            'route' => $route,
+            'action' => $action,
+            'name' => $action,
+            'middleware' => self::$currentData['middleware'] ?? []
+        ];
+        self::$routes['POST'][$route] = $data;
+        self::$current = $data;
         return new self;
     }
 
@@ -43,17 +57,15 @@ class Route {
      * @return self
      */
     public static function view(string $route, string $view_name) {
-        self::$routes['GET'][$route] = [
-            'view' => $view_name, 
-            'name' => ''
+        $data = [
+            'method' => 'GET',
+            'route' => $route,
+            'name' => '',
+            'view' => $view_name,
+            'middleware' => self::$currentData['middleware'] ?? []
         ];
-        
-        self::$current = [
-            'method' => 'GET', 
-            'route' => $route, 
-            'view' => $view_name, 
-            'name' => ''
-        ];
+        self::$routes['GET'][$route] = $data;
+        self::$current = $data;
         return new self;
     }
 
@@ -63,25 +75,20 @@ class Route {
      */
     public static function name(string $name) {
         self::$current['name'] = $name;
-
-        $data = [
-            'name' => $name
-        ];
-        if(isset(self::$current['action'])) $data['action'] = self::$current['action'];
-        if(isset(self::$current['view'])) $data['view'] = self::$current['view'];
-        if(isset(self::$current['route'])) $data['route'] = self::$current['route'];
-
-        self::$routes[self::$current['method']][self::$current['route']] = $data;
+        $data = self::$current;
+        self::$routes[$data['method']][$data['route']] = $data;
     }
 
-    public static function getRoute(string $route_name) {
-        foreach(self::$routes[$_SERVER['REQUEST_METHOD']] as $key => $values){
-            if($values['name'] == $route_name || $values['route'] == $route_name){
-                $route = $key;
+    public static function getRoute(string $route_name): ?string {
+        foreach(self::$routes as $method => $routes) {
+            if(isset($routes[$route_name])) {
+                return $routes[$route_name];
             }
-        }
-        if($route) {
-            return $route;
+            foreach($routes as $route => $route_data) {
+                if($route_data['name'] == $route_name) {
+                    return $route;
+                }
+            }
         }
         return null;
     }
@@ -98,56 +105,90 @@ class Route {
         return self::$currentRoute;
     }
 
-    public static function getCurrentRouteEscaped() {
-        $route_regex = self::getCurrentRouteRegex();
+    public static function getRouteEscaped($route = null) {
+        $route_regex = self::getRouteRegex($route);
         $find_routes = preg_grep($route_regex, array_keys(self::$routes[$_SERVER['REQUEST_METHOD']]));
         return $find_routes[array_key_first($find_routes)];
     }
 
-    public static function getCurrentRouteRegex() {
-        if(!isset(self::$currentRouteRegex)){
-            $route = self::getCurrentRoute();
-            $regex = preg_replace('/\/[1-9]+/', '/{.*}', $route);
-            $regex = '/'.preg_replace('/\//', '\/', $regex).'/';
-            self::$currentRouteRegex = $regex;
-            return $regex;
-        }
-        return self::$currentRouteRegex;
+    public static function getRouteRegex($route = null) {
+        $route = $route ?? self::getCurrentRoute();
+        $regex = preg_replace('/\/[1-9]+/', '/{.*}', $route);
+        $regex = '/'.preg_replace('/\//', '\/', $regex).'/';
+        return $regex;
     }
 
-    public static function getParameters($route_name = null) {
-        if($route_name) {
-        
-        } else {
-            $route_esc = self::getCurrentRouteEscaped();
-            dd($route_esc);
-        }
-        $route = self::getCurrentRoute();
-        $route_regex = self::getCurrentRouteRegex();
+    public static function getParameters($route = null): array {
+        $route = $route ?? self::getCurrentRoute();
+        $route_esc = self::getRouteEscaped($route);
+        $route_regex = self::getRouteRegex($route);
         $parameters = preg_match_all('/{(.*)}/', $route_esc, $matches, PREG_PATTERN_ORDER);
+        if($parameters == 0) {
+            return [];
+        }
         $regex = str_replace('{', '(', $route_regex);
         $regex = str_replace('}', ')', $regex);
         $values = preg_match_all($regex, $route, $matches2, PREG_PATTERN_ORDER);
 
         // dd($matches);
+        // dd($regex);
         // dd($matches2);
 
-        $params = [];
         foreach($matches[1] as $key => $param) {
             $params[$param] = $matches2[1][$key];
         }
-        // dd($params);
-        return $params;
+        return $params ?? [];
+    }
+
+    public static function getRouteParameters($route = null) {
+        $route = $route ?? self::getCurrentRoute();
+        $parameters = preg_match_all('/{(.*)}/', $route, $matches, PREG_PATTERN_ORDER);
+        return $matches[1] ?? [];
+    }
+
+    public static function setParameters(string $route = null, array $parameters = []) {
+        $route = $route ?? self::getCurrentRoute();
+        foreach($parameters as $key => $value) {
+            $keys[] = '/{'.$key.'}/';
+            $values[] = $value;
+        }
+        return preg_replace($keys, $values, $route);
     }
 
     public static function getCurrentRouteData() {
-        $route_regex = self::getCurrentRouteRegex();
+        $route_regex = self::getRouteRegex();
         $find_routes = preg_grep($route_regex, array_keys(self::$routes[$_SERVER['REQUEST_METHOD']]));
         if(!empty($find_routes)) {
             $route_data = self::$routes[$_SERVER['REQUEST_METHOD']][$find_routes[array_key_first($find_routes)]];
             return $route_data;
         }
         return [];
+    }
+
+    public static function middleware(mixed $middleware, callable $function) {
+        if(!is_callable($function)) return false;
+
+        if(is_array($middleware)) {
+            foreach($middleware as $protection){
+                self::$currentData['middleware'][] = $protection;
+            }
+        } else {
+            self::$currentData['middleware'][] = $middleware;
+        }
+
+        return $function();
+    }
+
+    public static function group(array $data, callable $function) {
+        if(!is_callable($function)) return false;
+
+        foreach($data as $key => $value){
+            if(in_array($key, ['middleware'])){
+                self::$currentData[$key][] = $value;
+            }
+        }
+
+        return $function();
     }
 
     /**
@@ -165,6 +206,13 @@ class Route {
             return view('error_pages.404');
         }
 
+        $routeMiddleware = getMiddleware();
+        foreach($route_data['middleware'] as $middleware) {
+            if(isset($routeMiddleware[$middleware])){
+                (new $routeMiddleware[$middleware])->handle();
+            }
+        }
+
         if(isset($route_data['view'])) {
             return view($route_data['view']);
         }
@@ -179,16 +227,14 @@ class Route {
         $parameters = self::getParameters();
 
         if(is_callable($route_data['action'])) {
-            $container->call($route_data['action'], $parameters);
-            return;
+            return $container->call($route_data['action'], $parameters);
         }
         
         if(is_array($route_data['action'])) {
             $function_name = $route_data['action'][1];
             $controller_name = $route_data['action'][0];
 
-            $container->call([$controller_name, $function_name], $parameters);
-            return;
+            return $container->call([$controller_name, $function_name], $parameters);
         }
         
         echo 'CANNOT FIND CONTROLLER?';
