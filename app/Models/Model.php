@@ -256,4 +256,12 @@ class Model {
     private static function return($model) {
         return $model ? new static($model) : null;
     }
+
+    /**
+     * Model relationships
+     */
+
+    // public function belongsTo(object $model, string $column = 'id') {
+
+    // }
 }

@@ -32,18 +32,14 @@ function route(string $route_name, array $parameters = []) {
 
     $url = getUrl();
 
+    if($route == null) {
+        return $url.$route_name;
+    }
+
+
     if(isset($_REQUEST['route'])) {
         $url .= '/?route=';
     }
-
-    // $url .= $route_name;
-    // if($route)  {
-    //     $url .= substr($route, 1);
-    // } else {
-    //     $url .= $route_name;
-    // }
-
-
     $useableParameters = Route::getRouteParameters($route);
 
     if(count($useableParameters) > 0) {

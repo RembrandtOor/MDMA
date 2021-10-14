@@ -19,12 +19,15 @@ class Route {
      * @return self
      */
     public static function get(string $route, $action) {
+        if(isset(self::$currentData['prefix'])) {
+            $route = self::$currentData['prefix'].$route;
+        }
         $data = [
             'method' => 'GET',
             'route' => $route,
             'action' => $action,
             'name' => '',
-            'middleware' => self::$currentData['middleware'] ?? []
+            'middleware' => self::$currentData['middleware'] ?? [],
         ];
         self::$routes['GET'][$route] = $data;
         self::$current = $data;
@@ -38,6 +41,9 @@ class Route {
      * @return self
      */
     public static function post(string $route, $action) {
+        if(isset(self::$currentData['prefix'])) {
+            $route = self::$currentData['prefix'].$route;
+        }
         $data = [
             'method' => 'POST',
             'route' => $route,
@@ -57,6 +63,9 @@ class Route {
      * @return self
      */
     public static function view(string $route, string $view_name) {
+        if(isset(self::$currentData['prefix'])) {
+            $route = self::$currentData['prefix'].$route;
+        }
         $data = [
             'method' => 'GET',
             'route' => $route,
@@ -176,19 +185,32 @@ class Route {
             self::$currentData['middleware'][] = $middleware;
         }
 
-        return $function();
+        $function();
+
+        self::$currentData = [];
+        return true;
     }
 
     public static function group(array $data, callable $function) {
         if(!is_callable($function)) return false;
 
         foreach($data as $key => $value){
-            if(in_array($key, ['middleware'])){
-                self::$currentData[$key][] = $value;
+            if(in_array($key, ['middleware', 'prefix'])){
+                if($key == 'prefix') {
+                    if($value[0] != '/') {
+                        $value = '/' . $value;
+                    }
+                    self::$currentData[$key] = $value;
+                } else {
+                    self::$currentData[$key][] = $value;
+                }
             }
         }
 
-        return $function();
+        $function();
+
+        self::$currentData = [];
+        return true;
     }
 
     /**

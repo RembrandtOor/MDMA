@@ -32,18 +32,20 @@
                 <div class="playlist-list">
                     <?php foreach($playlists as $playlist):?>
                         <div class="playlist">
-                            <img class="playlist-img" src="<?= $playlist->getIconUrl() ?>">
-                            <div class="playlist-details">
-                                <a class="playlist-name" href="<?= $playlist->getUrl(); ?>"><?= $playlist->getName() ?></a>
+                            <a href="<?= $playlist->getUrl(); ?>">
+                                <img class="playlist-img" src="<?= $playlist->getIconUrl() ?>">
+                            </a>
+                            <a href="<?= $playlist->getUrl(); ?>" class="playlist-details">
+                                <div class="playlist-name"><?= $playlist->getName() ?></div>
                                 <!-- <div class="playlist-author">Group name</div> -->
-                            </div>
+                            </a>
                             <div class="playlist-buttons">
-                                <a href="#" class="icon-btn">
+                                <!-- <a href="#" class="icon-btn">
                                     <img src="img/push-pin.png">
                                 </a>
                                 <a href="#" class="icon-btn">
                                     <img src="img/vertical-dots.png">
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     <?php endforeach ?>

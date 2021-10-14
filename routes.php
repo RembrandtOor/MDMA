@@ -84,7 +84,10 @@ Route::post('/api/playlist/update', [
     PlaylistController::class, 'update'
 ]);
 
-
 Route::middleware('auth', function() {
     Route::view('/cooltest', 'welcome');
+});
+
+Route::group(['prefix' => 'panel'], function() {
+    Route::view('/', 'panel.overview')->name('panel');
 });
