@@ -78,9 +78,6 @@ loginForm?.addEventListener('submit', async (e) => {
 
 const createPlaylistBtn = document.querySelector('#create-playlist');
 
-console.log(createPlaylistBtn);
-console.log('hi');
-
 createPlaylistBtn?.addEventListener('click', async (e) => {
 	e.preventDefault();
 
@@ -114,5 +111,34 @@ createPlaylistBtn?.addEventListener('click', async (e) => {
 			icon: 'error',
 			title: 'Something went wrong!',
 		});
+	}
+});
+
+const playPauseBtn = document.querySelector('#play-pause');
+
+var audio = {
+	playing: false,
+};
+
+var soundElement = document.querySelector('#audio-element');
+
+var src = document.createElement('source');
+src.src = '/data/songs/821b11ea-487e-47e3-ad51-b08d1239e106.mp3';
+soundElement.appendChild(src);
+
+soundElement.load();
+soundElement.volume = 0.0;
+soundElement.play();
+
+playPauseBtn?.addEventListener('click', () => {
+	if (audio.playing) {
+		audio.playing = false;
+		playPauseBtn.innerHTML = '<img src="img/icons/play.png" />';
+		soundElement.volume = 0.0;
+	} else {
+		audio.playing = true;
+		playPauseBtn.innerHTML = '<img src="img/icons/pause.png" />';
+		soundElement.currentTime = 0.01;
+		soundElement.volume = 1.0;
 	}
 });
