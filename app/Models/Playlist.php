@@ -22,4 +22,8 @@ class Playlist extends Model {
     public function getUrl() {
         return route('playlist', ['id' => $this->getId()]);
     }
+
+    public function songs() {
+        return $this->manyTroughMany(Song::class, PlaylistSong::class);
+    }
 }

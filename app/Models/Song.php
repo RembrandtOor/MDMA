@@ -8,8 +8,8 @@ class Song extends Model {
         return $this->name;
     }
 
-    public function getArtist() {
-        return $this->artist;
+    public function artist() {
+        return $this->belongsTo(Artist::class);
     }
 
     public function getIconUrl() {

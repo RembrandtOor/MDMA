@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Helpers\Request;
 use App\Helpers\Auth;
 use App\Models\Playlist;
+use App\Models\PlaylistSong;
 
 class PlaylistController {    
     public function index() {
@@ -16,9 +17,10 @@ class PlaylistController {
         if(!isset($id)) return redirect(route('playlists'));
         $playlist = Playlist::find($id);
         if(!$playlist) return redirect(route('playlists'));
+
         return view('playlist', [
             'playlist' => $playlist,
-            // 'songs' => PlaylistSongs::where('playlist_id', $id)->get()
+            'songs' => $playlist->songs()
         ]);
     }
 
