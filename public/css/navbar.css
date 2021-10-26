@@ -84,6 +84,7 @@
 }
 
 #music-player {
+  z-index: 15;
   width: 100%;
   max-width: 100%;
   height: 3rem;

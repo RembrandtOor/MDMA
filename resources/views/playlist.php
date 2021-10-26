@@ -8,8 +8,11 @@
         <link rel="stylesheet" href="<?= asset('css/styles.css'); ?>">
         <link rel="stylesheet" href="<?= asset('css/playlists.css'); ?>">
         <link rel="stylesheet" href="<?= asset('css/playlist.css'); ?>">
+        <link href="https://kit-pro.fontawesome.com/releases/latest/css/pro.min.css" rel="stylesheet">
     </head>
     <body>
+        <?php view('components.navbar'); ?>
+
         <div class="container">
             <div style="margin-bottom: 10px;">
                 <a href="<?= route('playlists') ?>" class="btn btn-primary"><- Go back</a>
@@ -22,6 +25,12 @@
                 </div>
             </div>
 
+            <div>
+                <button id="play-playlist" class="btn btn-circle btn-icon btn-primary" data-playlist-id="<?= $playlist->getId(); ?>">
+                    <img src="/img/icons/play" heigth="18px" width="18px">
+                </button>
+            </div>
+
             <div class="splitter"></div>
 
             <div class="search-bar">
@@ -32,10 +41,16 @@
             </div>
 
             <div class="songs-list">
-
                 <?php foreach($songs as $song): ?>
                     <div class="song">
-                        <img class="song-img" src="<?= $song->getIconUrl() ?>">
+                        <div class="song-img">
+                            <img src="<?= $song->getIconUrl() ?>">
+                            <div class="song-img-hover">
+                                <button class="btn btn-circle btn-transparent btn-icon play-song" data-song='<?= json_encode($song->getSongData()) ?>'>
+                                    <img src="<?= asset('img/icons/play.png') ?>" />
+                                </button>
+                            </div>
+                        </div>
                         <div class="song-details">
                             <div class="song-name"><?= $song->getName() ?></div>
                             <div class="song-author"><?= $song->artist()->getName() ?></div>
@@ -49,5 +64,7 @@
                 <?php endforeach ?>
             </div>
         </div>
+
+        <script src="<?= asset('js/main.js') ?>"></script>
     </body>
 </html>

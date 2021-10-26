@@ -7,6 +7,7 @@
         <title>MDMA - Login</title>
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="css/register.css">
+        <link href="https://kit-pro.fontawesome.com/releases/latest/css/pro.min.css" rel="stylesheet">
     </head>
     <body>
         <div class="container flex-center h-100">
@@ -33,6 +34,6 @@
         </div>
 
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="js/app.js"></script>
+        <script src="<?= asset('js/app.js') ?>"></script>
     </body>
 </html>

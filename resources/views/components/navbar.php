@@ -6,7 +6,7 @@
 </div>
 
 <link rel="stylesheet" href="/css/navbar.css">
-<div id="music-player">
+<div id="music-player" style="display: none">
     <img id="song-icon" src="/img/images.jpeg">
     <div id="song-info">
         <div id="song-title">Macy</div>
@@ -14,7 +14,7 @@
     </div>
     <div id="player-btns">
         <button id="play-pause" class="btn btn-circle btn-transparent btn-icon">
-            <img src="img/icons/play.png" />
+            <img src="/img/icons/play.png" />
         </button>
     </div>
 </div>

@@ -36,7 +36,7 @@
   height: 1px;
   width: 90%;
   margin: 1rem auto;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 .search-bar {
@@ -69,9 +69,34 @@
   padding: 0.2rem 0.4rem;
 }
 .songs-list .song .song-img {
+  padding: 0;
+  position: relative;
   height: 3rem;
   width: 3rem;
   border-radius: 5px;
+  overflow: hidden;
+}
+.songs-list .song .song-img img {
+  height: 100%;
+  width: 100%;
+}
+.songs-list .song .song-img:hover .song-img-hover {
+  display: flex;
+}
+.songs-list .song .song-img .song-img-hover {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+}
+.songs-list .song .song-img .song-img-hover img {
+  height: 1.25rem;
+  width: 1.25rem;
 }
 .songs-list .song .song-details {
   display: flex;

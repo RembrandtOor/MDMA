@@ -9,7 +9,7 @@ class Group extends Model {
     }
     
     public function getIconUrl() {
-        return $this->icon_url;
+        return asset('data/song_icons/'.$this->uuid.'.png');
     }
 
     public function getName() {
