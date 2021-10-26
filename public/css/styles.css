@@ -21,6 +21,14 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
+.btn.btn-icon img {
+  height: 100%;
+  width: 100%;
+}
+.btn.btn-icon.btn-lg img {
+  height: 24px;
+  width: 24px;
+}
 .btn.btn-lg {
   padding: 20px 40px;
   font-size: 1.25rem;
@@ -42,6 +50,7 @@
 .btn.btn-transparent:hover {
   background: transparent;
 }
+
 .bg-primary {
   background: #580980;
 }

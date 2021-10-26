@@ -26,7 +26,7 @@
             </div>
 
             <div>
-                <button id="play-playlist" class="btn btn-circle btn-icon btn-primary" data-playlist-id="<?= $playlist->getId(); ?>">
+                <button id="play-playlist" class="btn btn-lg btn-circle btn-icon btn-primary" data-playlist-id="<?= $playlist->getId(); ?>">
                     <img src="/img/icons/play" heigth="18px" width="18px">
                 </button>
             </div>

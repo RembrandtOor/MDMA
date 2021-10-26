@@ -25,6 +25,18 @@
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 
+	&.btn-icon {
+		img {
+			height: 100%;
+			width: 100%;
+		}
+
+		&.btn-lg img {
+			height: 24px;
+			width: 24px;
+		}
+	}
+
 	&.btn-lg {
 		padding: 20px 40px;
 		font-size: 1.25rem;
@@ -49,13 +61,6 @@
 		&:hover {
 			background: transparent;
 		}
-	}
-
-	&.btn-icon {
-		// img {
-		// 	height: 100%;
-		// 	width: 100%;
-		// }
 	}
 }
 

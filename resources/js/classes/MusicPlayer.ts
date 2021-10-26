@@ -17,6 +17,7 @@ export default class MusicPlayer {
 	sourceElement: HTMLAudioElement;
 	playing: boolean = false;
 	currentPlaying: Song;
+	queue: Song[];
 
 	constructor(sourceElement: HTMLAudioElement) {
 		this.sourceElement = sourceElement;
@@ -27,6 +28,10 @@ export default class MusicPlayer {
 			songArtist: document.querySelector('#song-album'),
 			songIcon: document.querySelector('#song-icon'),
 		};
+
+		this.sourceElement.addEventListener('onended', () => {
+			this.play(this.queue[0]);
+		});
 	}
 
 	play(song: Song = null) {
@@ -65,5 +70,9 @@ export default class MusicPlayer {
 		this.playerData.playPauseBtn.innerHTML =
 			'<img src="/img/icons/play.png"/>';
 		this.sourceElement.pause();
+	}
+
+	addToQueue(songs) {
+		this.queue.push(songs);
 	}
 }
