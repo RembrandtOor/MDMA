@@ -6,15 +6,20 @@
 </div>
 
 <link rel="stylesheet" href="/css/navbar.css">
-<div id="music-player" style="display: none">
+<div class="" id="music-player" style="display: none">
+    <div class="song-data">
     <img id="song-icon" src="/img/images.jpeg">
-    <div id="song-info">
-        <div id="song-title">Macy</div>
-        <div id="song-album">album</div>
+        <div id="song-info">
+            <div id="song-title">Loading..</div>
+            <div id="song-album">Loading..</div>
+        </div>
     </div>
     <div id="player-btns">
         <button id="play-pause" class="btn btn-circle btn-transparent btn-icon">
             <img src="/img/icons/play.png" />
+        </button>
+        <button id="open-player" class="btn btn-circle btn-transparent btn-icon">
+            <img src="/img/icons/arrow_down.png" />
         </button>
     </div>
 </div>

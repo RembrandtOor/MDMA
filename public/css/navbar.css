@@ -84,6 +84,7 @@
 }
 
 #music-player {
+  transition: height 200ms;
   z-index: 15;
   width: 100%;
   max-width: 100%;
@@ -100,18 +101,69 @@
   width: 3rem;
   background: black;
 }
-#music-player #song-info {
+#music-player .song-data {
+  display: flex;
+  width: 30%;
+}
+#music-player .song-data #song-info {
   display: flex;
   flex-direction: column;
-  max-width: 30%;
+  width: 100%;
   overflow: hidden;
   margin: 0 0.4rem;
+  justify-content: center;
 }
 #music-player #player-btns {
   display: flex;
   height: 100%;
   margin-left: auto;
   margin-right: 0.4rem;
+}
+#music-player #player-btns #open-player {
+  transform: rotate(180deg);
+}
+#music-player.open {
+  height: 80%;
+  max-width: 100%;
+  flex-direction: column;
+  padding: 2rem;
+}
+#music-player.open .song-data {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+#music-player.open .song-data #song-icon {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 5px;
+}
+#music-player.open .song-data #song-info {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  overflow: hidden;
+  margin: 0 0.4rem;
+}
+#music-player.open .song-data #song-info #song-title {
+  margin-top: 0.4rem;
+}
+#music-player.open .song-data #song-info #song-album {
+  margin-top: 0.4rem;
+}
+#music-player.open #player-btns {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-height: 10%;
+  width: 100%;
+  justify-content: center;
+}
+#music-player.open #player-btns #open-player {
+  transform: rotate(0deg);
 }
 
 @media (min-width: 1024px) {

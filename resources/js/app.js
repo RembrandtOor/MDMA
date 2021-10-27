@@ -117,3 +117,13 @@ createPlaylistBtn?.addEventListener('click', async (e) => {
 });
 
 require('./player/player.ts');
+
+const togglePlayer = document.querySelector('#open-player');
+let playerOpen = false;
+
+togglePlayer?.addEventListener('click', () => {
+	playerOpen = !playerOpen;
+	document
+		.querySelector('#music-player')
+		.classList.toggle('open', playerOpen);
+});

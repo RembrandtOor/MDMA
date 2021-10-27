@@ -36,6 +36,7 @@
 }
 
 #music-player {
+	transition: height 200ms;
 	z-index: 15;
 	width: 100%;
 	max-width: 100%;
@@ -53,16 +54,22 @@
 		background: black;
 	}
 
-	#song-info {
+	.song-data {
 		display: flex;
-		flex-direction: column;
-		max-width: 30%;
-		overflow: hidden;
-		margin: 0 0.4rem;
+		width: 30%;
 
-		#song-title {
-		}
-		#song-album {
+		#song-info {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			overflow: hidden;
+			margin: 0 0.4rem;
+			justify-content: center;
+
+			#song-title {
+			}
+			#song-album {
+			}
 		}
 	}
 
@@ -73,6 +80,61 @@
 		margin: {
 			left: auto;
 			right: 0.4rem;
+		}
+
+		#open-player {
+			transform: rotate(180deg);
+		}
+	}
+
+	&.open {
+		height: 80%;
+		max-width: 100%;
+		flex-direction: column;
+		padding: 2rem;
+
+		.song-data {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+
+			#song-icon {
+				width: 20rem;
+				height: 20rem;
+				border-radius: 5px;
+			}
+
+			#song-info {
+				display: flex;
+				flex-direction: column;
+				width: 40%;
+				overflow: hidden;
+				margin: 0 0.4rem;
+
+				#song-title {
+					margin-top: 0.4rem;
+				}
+				#song-album {
+					margin-top: 0.4rem;
+				}
+			}
+		}
+
+		#player-btns {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			max-height: 10%;
+			width: 100%;
+			justify-content: center;
+
+			#open-player {
+				// display: none;
+				transform: rotate(0deg);
+			}
 		}
 	}
 }

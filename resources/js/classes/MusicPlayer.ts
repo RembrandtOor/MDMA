@@ -35,14 +35,12 @@ export default class MusicPlayer {
 	}
 
 	play(song: Song = null) {
-		if (this.currentPlaying == null) {
-			document.querySelector<HTMLElement>('#music-player').style.display =
-				'flex';
-		}
 		if (song != null) {
 			if (song == this.currentPlaying) {
 				return this.pause();
 			}
+			document.querySelector<HTMLElement>('#music-player').style.display =
+				'flex';
 			this.currentPlaying = song;
 			this.sourceElement.innerHTML = '';
 			const src = document.createElement('source');
@@ -54,8 +52,10 @@ export default class MusicPlayer {
 			this.playerData.songArtist.innerHTML = song.artist;
 			this.playerData.songIcon.src = song.icon_url;
 		} else {
-			if (this.playing) {
+			if (this.playing && this.currentPlaying != null) {
 				return this.pause();
+			} else {
+				return false;
 			}
 		}
 		this.playing = true;
