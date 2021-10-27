@@ -53,7 +53,6 @@
             </div>
         <?php endif ?>
 
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="js/app.js"></script>
+        <script src="<?= asset('js/main.js') ?>"></script>
     </body>
 </html>

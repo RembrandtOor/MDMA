@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label>Upload your mp3 file</label>
-                    <input type = "file" name="songfile" accept = ".mp3"/>
+                    <input type="file" name="songfile" accept=".mp3"/>
                 </div>
                 
                 <div class="form-group">

@@ -30,6 +30,7 @@ if (playSongButtons) {
 		playSongBtn.addEventListener('click', () => {
 			if (playSongBtn.classList.contains('active')) {
 				player.pause();
+				playSongBtn.classList.remove('active');
 				playSongBtn.innerHTML = '<img src="/img/icons/play.png"/>';
 			} else {
 				const song: Song = JSON.parse(playSongBtn.dataset.song);

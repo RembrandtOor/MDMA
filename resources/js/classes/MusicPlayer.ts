@@ -17,9 +17,12 @@ export default class MusicPlayer {
 	sourceElement: HTMLAudioElement;
 	playing: boolean = false;
 	currentPlaying: Song;
-	queue: Song[];
+	queue: Song[] = [];
 
 	constructor(sourceElement: HTMLAudioElement) {
+		if (!sourceElement) {
+			return;
+		}
 		this.sourceElement = sourceElement;
 		this.sourceElement.volume = 1.0;
 		this.playerData = {
@@ -52,14 +55,14 @@ export default class MusicPlayer {
 			this.playerData.songArtist.innerHTML = song.artist;
 			this.playerData.songIcon.src = song.icon_url;
 		} else {
-			if (this.playing && this.currentPlaying != null) {
+			if (this.playing) {
 				return this.pause();
-			} else {
+			} else if (this.currentPlaying == null) {
 				return false;
 			}
 		}
-		this.playing = true;
 
+		this.playing = true;
 		this.playerData.playPauseBtn.innerHTML =
 			'<img src="/img/icons/pause.png"/>';
 		this.sourceElement.play();
@@ -74,5 +77,9 @@ export default class MusicPlayer {
 
 	addToQueue(songs) {
 		this.queue.push(songs);
+	}
+
+	clearQueue() {
+		this.queue = [];
 	}
 }

@@ -13,6 +13,7 @@ class Authenticated {
             return true;
         }
         
-        return response(401)->view('error_pages/401');
+        return redirect(route('login'));
+        // return response(401)->view('error_pages/401');
     }
 }
